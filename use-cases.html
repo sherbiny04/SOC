@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butter | Use Cases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            yellow: '#FFF584',
+                            lavender: '#C9CFFE',
+                            mint: '#A5EFD3',
+                            peach: '#FEE0B2',
+                            pink: '#F9D8D2',
+                            dark: '#1B1C33'
+                        }
+                    },
+                    boxShadow: {
+                        'playful': '4px 4px 0px 0px rgba(27,28,51,1)',
+                        'playful-lg': '8px 8px 0px 0px rgba(27,28,51,1)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1B1C33; }
+        h1, h2, h3, .font-display { font-family: 'Sora', sans-serif; }
+    </style>
+</head>
+<body class="bg-brand-mint text-brand-dark overflow-x-hidden antialiased selection:bg-brand-dark selection:text-brand-mint">
+    <!-- NAVIGATION -->
+    <nav class="absolute top-0 w-full p-6 z-50 flex justify-between items-center max-w-7xl mx-auto left-0 right-0">
+        <a href="index.html" class="flex items-center space-x-2 font-display font-bold text-2xl tracking-tight">
+            <span class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center text-brand-yellow text-sm">B</span>
+            <span>Butter</span>
+        </a>
+        <div class="hidden md:flex space-x-8 font-semibold text-brand-dark/80 bg-white/50 backdrop-blur px-8 py-3 rounded-full border-2 border-brand-dark shadow-playful">
+            <a href="product.html" class="hover:text-black hover:-translate-y-0.5 transition-transform">Product</a>
+            <a href="use-cases.html" class="text-black font-bold border-b-2 border-brand-dark">Use cases</a>
+            <a href="resources.html" class="hover:text-black hover:-translate-y-0.5 transition-transform">Resources</a>
+            <a href="pricing.html" class="hover:text-black hover:-translate-y-0.5 transition-transform">Pricing</a>
+        </div>
+        <div class="flex space-x-4 items-center font-bold">
+            <a href="login.html" class="hidden md:inline-block hover:underline px-4 py-2 hover:bg-black/5 rounded-full transition-colors">Log in</a>
+            <a href="signup.html" class="hidden md:inline-block px-5 py-2.5 rounded-full border-2 border-brand-dark bg-white shadow-[4px_4px_0px_0px_rgba(27,28,51,1)] hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(27,28,51,1)] transition-all">Sign up</a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden block p-2 text-brand-dark hover:bg-black/5 rounded-full focus:outline-none z-50">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-mint z-[100] flex flex-col items-center justify-center space-y-8 text-4xl font-display font-bold transform translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-brand-dark hover:bg-black/5 rounded-full focus:outline-none">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <a href="product.html" class="hover:text-black hover:underline">Product</a>
+        <a href="use-cases.html" class="hover:text-black hover:underline">Use cases</a>
+        <a href="resources.html" class="hover:text-black hover:underline">Resources</a>
+        <a href="pricing.html" class="hover:text-black hover:underline">Pricing</a>
+        <div class="flex flex-col space-y-6 items-center mt-12 text-2xl font-sans font-bold">
+            <a href="login.html" class="hover:underline">Log in</a>
+            <a href="signup.html" class="px-8 py-4 rounded-full border-2 border-brand-dark bg-white shadow-playful">Sign up for free</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="pt-40 pb-20 px-6 relative border-b-4 border-brand-dark z-10 flex flex-col items-center">
+        <div class="max-w-4xl mx-auto text-center hero-anim" style="opacity: 0;">
+            <div class="inline-block bg-white border-2 border-brand-dark px-4 py-2 rounded-xl rotate-3 mb-6 shadow-sm font-bold">
+                For every team size 🤝
+            </div>
+            <h1 class="text-6xl md:text-8xl font-extrabold leading-[1.05] mb-8 font-display tracking-tight text-brand-dark drop-shadow-sm">
+                Built for <span class="text-transparent bg-clip-text" style="-webkit-text-stroke: 2px #1B1C33; animation: pulse 2s infinite;">complex</span> sessions.
+            </h1>
+            <p class="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-brand-dark/80 font-medium">Workshops, trainings, town halls, and more. Butter handles the heavy lifting.</p>
+        </div>
+    </section>
+
+    <!-- ROLLING BANNER -->
+    <div class="bg-brand-dark text-brand-yellow font-display font-bold text-2xl py-4 flex overflow-hidden border-b-2 border-brand-dark whitespace-nowrap">
+        <div class="animate-[marquee_20s_linear_infinite] px-4 flex items-center space-x-8">
+            <span>✧ DESIGN SPRINTS</span> <span>✧ ROADMAP PLANNING</span> <span>✧ RETROSPECTIVES</span> <span>✧ ALL HANDS</span> <span>✧ BRAINSTORMING</span>
+            <span>✧ DESIGN SPRINTS</span> <span>✧ ROADMAP PLANNING</span> <span>✧ RETROSPECTIVES</span> <span>✧ ALL HANDS</span> <span>✧ BRAINSTORMING</span>
+        </div>
+    </div>
+    <style> @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } } </style>
+
+    <!-- CASES CARDS -->
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Case 1 -->
+            <div class="uc-card bg-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden">
+                <div class="w-16 h-16 bg-brand-yellow rounded-full border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
+                    <i data-lucide="pen-tool" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-4xl font-display font-extrabold mb-4">Workshops</h3>
+                <p class="text-xl opacity-80 font-medium mb-8">Run multi-day design sprints or 2-hour strategy sessions without losing engagement.</p>
+                <ul class="space-y-3 font-semibold text-lg border-t-2 border-gray-100 pt-6">
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-mint w-5 h-5 mr-3 stroke-[3]"></i> Breakout rooms</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-mint w-5 h-5 mr-3 stroke-[3]"></i> Embedded whiteboards</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-mint w-5 h-5 mr-3 stroke-[3]"></i> Polls & Quizzes</li>
+                </ul>
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-yellow rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="uc-card bg-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden mt-10 lg:mt-24">
+                <div class="w-16 h-16 bg-brand-lavender rounded-full border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
+                    <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-4xl font-display font-extrabold mb-4">Training</h3>
+                <p class="text-xl opacity-80 font-medium mb-8">Keep learners hooked. Make sure your knowledge transfer actually works.</p>
+                <ul class="space-y-3 font-semibold text-lg border-t-2 border-gray-100 pt-6">
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-lavender w-5 h-5 mr-3 stroke-[3]"></i> Interactive queues</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-lavender w-5 h-5 mr-3 stroke-[3]"></i> Private notes</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-lavender w-5 h-5 mr-3 stroke-[3]"></i> Post-session recaps</li>
+                </ul>
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-lavender rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+            </div>
+
+            <!-- Case 3 -->
+            <div class="uc-card bg-brand-dark text-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-[12px_12px_0px_0px_rgba(255,245,132,1)] relative group overflow-hidden">
+                <div class="w-16 h-16 bg-brand-peach rounded-2xl border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:rotate-12 transition-transform text-brand-dark">
+                    <i data-lucide="users" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-4xl font-display font-extrabold mb-4">All Hands & Town Halls</h3>
+                <p class="text-xl opacity-80 font-medium mb-8">Align the whole company. High energy, zero technical difficulties.</p>
+                <ul class="space-y-3 font-semibold text-lg border-t-2 border-gray-700 pt-6">
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-peach w-5 h-5 mr-3 stroke-[3]"></i> Music & Soundboards</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-peach w-5 h-5 mr-3 stroke-[3]"></i> Seamless presentation handoffs</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-peach w-5 h-5 mr-3 stroke-[3]"></i> Anonymous Q&A</li>
+                </ul>
+            </div>
+
+            <div class="uc-card bg-brand-peach p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden mt-10 lg:mt-24">
+                <div class="w-16 h-16 bg-white rounded-xl rotate-45 border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:rotate-0 transition-transform text-brand-dark mx-4">
+                    <i data-lucide="coffee" class="w-8 h-8 -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                </div>
+                <h3 class="text-4xl font-display font-extrabold mb-4">Socials & Mixers</h3>
+                <p class="text-xl opacity-80 font-medium mb-8">Because remote culture doesn't have to be forced fun.</p>
+                <ul class="space-y-3 font-semibold text-lg border-t-2 border-brand-dark/10 pt-6">
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-dark w-5 h-5 mr-3 stroke-[3]"></i> Mini-games</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-dark w-5 h-5 mr-3 stroke-[3]"></i> Flying reaction emojis</li>
+                    <li class="flex items-center"><i data-lucide="check" class="text-brand-dark w-5 h-5 mr-3 stroke-[3]"></i> Casual room switching</li>
+                </ul>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-5xl mx-auto px-6 pb-32">
+        <div class="bg-brand-pink border-2 border-brand-dark rounded-[3rem] p-16 text-center shadow-playful-lg relative overflow-hidden">
+            <h2 class="text-5xl font-display font-extrabold mb-6 relative z-10 w-full">Ready to try it yourself?</h2>
+            <p class="text-2xl font-medium opacity-80 mb-10 relative z-10">We've got templates ready for all these use cases!</p>
+            <a href="signup.html" class="inline-block px-10 py-5 bg-brand-dark text-white rounded-full font-bold text-2xl hover:bg-black transition-colors shadow-playful border border-transparent relative z-10">Sign up and steal them</a>
+            <i data-lucide="sparkles" class="absolute left-10 top-10 w-20 h-20 text-white/50 -rotate-12"></i>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+    <script>
+        lucide.createIcons();
+        const { animate, inView, stagger } = Motion;
+        
+        // Mobile menu toggle
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+        const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+        if (menuBtn && closeMenuBtn && mobileMenuOverlay) {
+            menuBtn.addEventListener("click", () => {
+                mobileMenuOverlay.style.transform = "translateY(0)";
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            });
+
+            closeMenuBtn.addEventListener("click", () => {
+                mobileMenuOverlay.style.transform = "translateY(100%)";
+                document.body.style.overflow = ""; // Restore scrolling
+            });
+        }
+
+        // Initial loader
+        animate(".hero-anim", { opacity: 1, scale: [0.9, 1], y: [40, 0] }, { duration: 0.8, easing: "easeOut" });
+
+        document.querySelectorAll(".uc-card").forEach(el => {
+            el.style.opacity = '0';
+            el.style.transition = 'none';
+        });
+        let ucHasRun = false;
+        inView(".uc-card", () => {
+            if (ucHasRun) return;
+            ucHasRun = true;
+            const anim = animate(".uc-card", { opacity: [0, 1], y: [50, 0] }, { duration: 0.8, delay: stagger(0.2), easing: [0.17, 0.55, 0.55, 1]});
+            anim.finished.then(() => {
+                document.querySelectorAll(".uc-card").forEach(el => {
+                    el.style.transform = '';
+                    el.style.transition = '';
+                });
+            });
+        }, { margin: "-100px" });
+    </script>
+</body>
+</html>

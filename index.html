@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butter | Run more engaging sessions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            yellow: '#FFF584',
+                            lavender: '#C9CFFE',
+                            mint: '#A5EFD3',
+                            peach: '#FEE0B2',
+                            pink: '#F9D8D2',
+                            dark: '#1B1C33',
+                            gray: '#F3F4F6'
+                        }
+                    },
+                    boxShadow: {
+                        'playful': '4px 4px 0px 0px rgba(27,28,51,1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1B1C33; }
+        h1, h2, h3, .display-font { font-family: 'Sora', sans-serif; }
+        .rotate-neg-2 { transform: rotate(-3deg); }
+        .rotate-pos-2 { transform: rotate(3deg); }
+        .rotate-neg-4 { transform: rotate(-5deg); }
+        
+        /* Floating animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Circular text */
+        .circle-text-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .circle-char {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'Sora', sans-serif;
+            left: 50%;
+            top: 50%;
+            transform-origin: center;
+        }
+
+        /* Accordion */
+        details > summary { transition: background-color 0.2s ease; }
+        details[open] > summary ~ div { animation: slideDown 0.3s ease-in-out; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-white overflow-x-hidden antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="absolute top-0 w-full p-6 z-50 flex justify-between items-center max-w-7xl mx-auto left-0 right-0">
+        <a href="index.html" class="flex items-center space-x-2 font-display font-bold text-2xl tracking-tight">
+            <span class="w-8 h-8 rounded-full bg-brand-dark flex items-center justify-center text-brand-yellow text-sm">B</span>
+            <span>Butter</span>
+        </a>
+        <div class="hidden md:flex space-x-8 font-semibold text-brand-dark/80 hover:text-brand-dark">
+            <a href="product.html" class="hover:text-black">Product</a>
+            <a href="use-cases.html" class="hover:text-black">Use cases</a>
+            <a href="resources.html" class="hover:text-black">Resources</a>
+            <a href="pricing.html" class="hover:text-black">Pricing</a>
+        </div>
+        <div class="flex space-x-4 items-center font-bold">
+            <a href="login.html" class="hidden md:inline-block hover:underline">Log in</a>
+            <a href="signup.html" class="hidden md:inline-block px-5 py-2.5 rounded-full border-2 border-brand-dark bg-white shadow-playful hover:translate-y-0.5 hover:shadow-[2px_2px_0px_0px_rgba(27,28,51,1)] transition-all">Sign up for free</a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden block p-2 text-brand-dark hover:bg-black/5 rounded-full focus:outline-none z-50">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-brand-yellow z-[100] flex flex-col items-center justify-center space-y-8 text-4xl font-display font-bold transform translate-y-full transition-transform duration-500 ease-in-out">
+        <button id="close-menu-btn" class="absolute top-6 right-6 p-2 text-brand-dark hover:bg-black/5 rounded-full focus:outline-none">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <a href="product.html" class="hover:text-black hover:underline">Product</a>
+        <a href="use-cases.html" class="hover:text-black hover:underline">Use cases</a>
+        <a href="resources.html" class="hover:text-black hover:underline">Resources</a>
+        <a href="pricing.html" class="hover:text-black hover:underline">Pricing</a>
+        <div class="flex flex-col space-y-6 items-center mt-12 text-2xl font-sans font-bold">
+            <a href="login.html" class="hover:underline">Log in</a>
+            <a href="signup.html" class="px-8 py-4 rounded-full border-2 border-brand-dark bg-white shadow-playful">Sign up for free</a>
+        </div>
+    </div>
+
+    <!-- 1 HERO SECTION -->
+    <section class="bg-brand-yellow pt-32 pb-20 px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10 text-brand-dark mt-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6 font-display tracking-tight">
+                Run more engaging sessions.<br>Get better outcomes.
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium text-brand-dark/80">
+                Help teams collaborate effectively with structured facilitation tools. Workshops, meetings and trainings powered by energy and joy.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="signup.html" class="px-8 py-4 rounded-full border-2 border-brand-dark bg-brand-dark text-white font-bold text-lg hover:bg-black transition-colors shadow-playful">Get started for free</a>
+                <a href="demo.html" class="px-8 py-4 rounded-full border-2 border-brand-dark bg-white font-bold text-lg hover:bg-gray-50 transition-colors shadow-playful">Book a demo</a>
+            </div>
+
+            <!-- Dashboard Mockup Image -->
+            <div class="mt-16 relative mx-auto w-full max-w-4xl animate-float" style="animation-duration: 8s;">
+                <div class="bg-white rounded-3xl border border-gray-200 shadow-2xl overflow-hidden aspect-video relative flex">
+                    <!-- Fake Sidebar -->
+                    <div class="w-16 border-r border-gray-100 flex flex-col items-center py-4 space-y-4 bg-gray-50">
+                        <div class="w-8 h-8 rounded-full bg-brand-lavender"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-mint"></div>
+                        <div class="w-8 h-8 rounded-full bg-brand-pink"></div>
+                    </div>
+                    <!-- Fake Main Area (Grid) -->
+                    <div class="flex-1 p-6 grid grid-cols-4 gap-4 bg-gray-50/50">
+                        <div class="bg-brand-peach rounded-2xl flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-brand-mint rounded-2xl flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-brand-lavender col-span-2 row-span-2 rounded-2xl flex items-center justify-center relative">
+                            <button class="bg-white px-6 py-3 rounded-full font-bold shadow-lg flex items-center space-x-2 text-brand-dark">
+                                <i data-lucide="play" class="w-5 h-5 text-brand-yellow fill-current"></i>
+                                <span>Take a 2 min. tour</span>
+                            </button>
+                        </div>
+                        <div class="bg-brand-yellow rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-brand-pink rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-blue-100 rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-green-100 rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-red-100 rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                        <div class="bg-purple-100 rounded-2xl aspect-square flex items-center justify-center"><i data-lucide="user" class="text-brand-dark/20 w-12 h-12"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative squiggles background -->
+        <i data-lucide="sparkles" class="absolute top-32 left-20 w-12 h-12 text-brand-dark/20 rotate-12"></i>
+        <i data-lucide="star" class="absolute bottom-40 right-20 w-16 h-16 text-brand-dark/20 rotate-45 fill-current"></i>
+    </section>
+
+    <!-- 2 TRUSTED BY SECTION -->
+    <section class="py-12 border-b border-gray-100 bg-white">
+        <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+            <h3 class="text-xl font-bold font-display tracking-wider">IKEA</h3>
+            <h3 class="text-xl font-bold font-display tracking-wider">Miro</h3>
+            <h3 class="text-xl font-bold font-display tracking-wider">WWF</h3>
+            <h3 class="text-xl font-bold font-display tracking-wider">IDEO</h3>
+            <h3 class="text-xl font-bold font-display tracking-wider">PayFit</h3>
+            <h3 class="text-xl font-bold font-display tracking-wider">NIVEA</h3>
+        </div>
+    </section>
+
+    <!-- 3 VALUE STATEMENT SECTION -->
+    <section class="py-24 px-6 text-center max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-display font-semibold leading-tight text-brand-dark">
+            All your team’s facilitation tools in one place. <span class="text-gray-400">Stop hosting snoozefests. Start collaborating effectively. Butter brings structure, <span class="bg-brand-yellow px-2 rounded-lg text-brand-dark inline-block rotate-neg-2">energy, and joy</span> to your meetings, workshops, and training sessions.</span>
+        </h2>
+    </section>
+
+    <!-- 4 FEATURE STORY SECTION — PLAN -->
+    <section class="py-24 px-6 mt-10 relative">
+        <div class="max-w-6xl mx-auto relative">
+            <h2 class="absolute -top-14 md:-top-20 left-0 md:-left-10 text-7xl md:text-[9rem] font-display font-extrabold rotate-neg-4 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Plan.</h2>
+            <div class="bg-brand-lavender rounded-[3rem] p-10 md:p-20 relative flex flex-col md:flex-row items-center border-2 border-brand-dark/5 shadow-sm mt-8">
+                <div class="md:w-1/2 z-10 pt-10 md:pt-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 font-display">Prepare sessions that<br>practically run themselves</h3>
+                    <p class="text-lg mb-8 opacity-80 max-w-sm">Create seamless structures with timed agendas, integrations, and tools ready before anyone even enters the room.</p>
+                    <a href="#" class="px-6 py-3 rounded-full border-2 border-brand-dark bg-transparent font-bold hover:bg-white transition-colors block w-max">Learn more</a>
+                </div>
+                <div class="md:w-1/2 relative mt-12 md:mt-0 animate-float">
+                    <div class="bg-white rounded-2xl p-6 shadow-xl border-2 border-brand-dark rotate-pos-2 relative z-20 max-w-sm mx-auto shadow-playful">
+                        <div class="w-full h-8 bg-gray-100 rounded-md mb-4 flex items-center px-4 space-x-2 border border-gray-200">
+                            <div class="w-3 h-3 rounded-full bg-brand-yellow border border-gray-300"></div>
+                            <div class="w-3 h-3 rounded-full bg-brand-mint border border-gray-300"></div>
+                            <div class="w-3 h-3 rounded-full bg-brand-pink border border-gray-300"></div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-12 bg-gray-50 rounded-lg border-2 border-gray-100 flex items-center px-4 font-bold text-sm"><i data-lucide="check-circle" class="w-5 h-5 text-brand-mint mr-3"></i> Welcome & Icebreaker</div>
+                            <div class="h-12 bg-gray-50 rounded-lg border-2 border-gray-100 flex items-center px-4 font-bold text-sm"><i data-lucide="users" class="w-5 h-5 text-brand-lavender mr-3"></i> Group Brainstorm</div>
+                            <div class="h-12 bg-gray-50 rounded-lg border-2 border-gray-100 flex items-center px-4 font-bold text-sm"><i data-lucide="clock" class="w-5 h-5 text-brand-peach mr-3"></i> 5 Min Break</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5 FEATURE STORY SECTION — RUN -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto relative">
+            <h2 class="absolute -top-14 md:-top-20 right-0 md:-right-6 text-7xl md:text-[9rem] font-display font-extrabold rotate-pos-2 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Run.</h2>
+            <div class="bg-brand-mint rounded-[3rem] p-10 md:p-20 relative flex flex-col md:flex-row-reverse items-center border-2 border-brand-dark/5 shadow-sm mt-8">
+                <div class="md:w-1/2 z-10 md:pl-20 pt-10 md:pt-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 font-display">Bump up the energy</h3>
+                    <p class="text-lg mb-8 opacity-80 max-w-sm">Keep participants actively engaged with built-in soundboards, reactions, polls, waiting room music, and interactive activities.</p>
+                    <a href="#" class="px-6 py-3 rounded-full border-2 border-brand-dark bg-transparent font-bold hover:bg-white transition-colors block w-max">View in action</a>
+                </div>
+                <div class="md:w-1/2 relative mt-12 md:mt-0 animate-float" style="animation-direction: alternate-reverse;">
+                    <div class="bg-white rounded-2xl p-6 shadow-xl border-2 border-brand-dark rotate-neg-2 relative z-20 max-w-sm mx-auto flex flex-col shadow-playful">
+                        <div class="flex items-center justify-between border-b-2 border-gray-100 pb-4 mb-4">
+                            <span class="font-bold font-display">Chat</span>
+                            <div class="flex space-x-2">
+                                <span class="text-2xl hover:scale-125 transition-transform cursor-pointer">🔥</span>
+                                <span class="text-2xl hover:scale-125 transition-transform cursor-pointer">👏</span>
+                                <span class="text-2xl hover:scale-125 transition-transform cursor-pointer">🎉</span>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex space-x-3">
+                                <div class="w-8 h-8 rounded-full bg-brand-yellow shrink-0 border border-gray-200"></div>
+                                <div class="bg-gray-100 p-3 rounded-2xl rounded-tl-none text-sm border border-gray-200 font-medium">This is exactly what we needed!</div>
+                            </div>
+                            <div class="flex space-x-3 flex-row-reverse">
+                                <div class="w-8 h-8 rounded-full bg-brand-pink shrink-0 ml-3 border border-gray-200"></div>
+                                <div class="bg-brand-lavender p-3 rounded-2xl rounded-tr-none text-sm font-bold border-2 border-brand-dark shadow-sm">Let's vote on option B.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hand sticker -->
+                    <div class="absolute -right-4 -bottom-4 bg-brand-yellow p-4 rounded-full border-2 border-brand-dark rotate-12 shadow-playful z-30 animate-pulse">
+                        <i data-lucide="hand" class="w-8 h-8"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6 FEATURE STORY SECTION — RECAP -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto relative">
+            <h2 class="absolute -top-14 md:-top-20 left-0 md:-left-10 text-7xl md:text-[9rem] font-display font-extrabold rotate-neg-4 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Recap.</h2>
+            <div class="bg-brand-peach rounded-[3rem] p-10 md:p-20 relative flex flex-col md:flex-row items-center border-2 border-brand-dark/5 shadow-sm mt-8">
+                <div class="md:w-1/2 z-10 pt-10 md:pt-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 font-display">Don't forget your<br>takeaways</h3>
+                    <p class="text-lg mb-8 opacity-80 max-w-sm">Summarize your sessions and capture outcomes in seconds. Access chat logs, poll recordings, personal notes, and more.</p>
+                    <a href="#" class="px-6 py-3 rounded-full border-2 border-brand-dark bg-transparent font-bold hover:bg-white transition-colors block w-max">Try it out</a>
+                </div>
+                <div class="md:w-1/2 relative mt-12 md:mt-0 animate-float">
+                    <div class="bg-brand-yellow rounded-2xl p-8 shadow-xl border-4 border-brand-dark border-dashed rotate-pos-2 relative z-20 max-w-sm mx-auto text-center shadow-playful">
+                        <div class="w-24 h-24 bg-white rounded-full mx-auto flex items-center justify-center border-2 border-brand-dark shadow-playful mb-6">
+                            <span class="text-3xl font-display font-bold text-red-500">REC</span>
+                        </div>
+                        <div class="w-full h-4 bg-white/60 rounded-full mb-3 border border-brand-dark/10"></div>
+                        <div class="w-3/4 h-4 bg-white/60 rounded-full mx-auto border border-brand-dark/10"></div>
+                    </div>
+                    <div class="absolute -top-6 -left-6 bg-white p-3 border-2 border-brand-dark rounded-xl rotate-neg-4 shadow-playful z-30">
+                        <i data-lucide="pen-tool" class="w-6 h-6"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7 FEATURE STORY SECTION — COLLABORATE -->
+    <section class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto relative">
+            <h2 class="absolute -top-10 md:-top-16 left-0 md:left-10 text-6xl md:text-[8rem] font-display font-extrabold rotate-pos-2 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Collaborate.</h2>
+            <div class="bg-brand-pink rounded-[3rem] p-10 md:p-20 relative flex flex-col md:flex-row-reverse items-center border-2 border-brand-dark/5 shadow-sm mt-12">
+                <div class="md:w-1/2 z-10 md:pl-20 pt-10 md:pt-0">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4 font-display">One workspace for all<br>your team's sessions</h3>
+                    <p class="text-lg mb-8 opacity-80 max-w-sm">Your Butter workspace is where you and your team can arrange rooms, share templates, and discuss recaps seamlessly.</p>
+                    <a href="#" class="px-6 py-3 rounded-full border-2 border-brand-dark bg-transparent font-bold hover:bg-white transition-colors block w-max">See workspaces</a>
+                </div>
+                <div class="md:w-1/2 relative mt-12 md:mt-0 animate-float" style="animation-duration: 9s;">
+                    <div class="bg-brand-dark rounded-3xl p-4 shadow-2xl rotate-neg-2 relative z-20 max-w-md mx-auto aspect-video flex flex-wrap gap-2 justify-center content-center border-4 border-white shadow-playful">
+                        <div class="w-14 h-14 rounded-full border-2 border-brand-dark bg-brand-yellow -ml-4 shadow-sm z-10"></div>
+                        <div class="w-14 h-14 rounded-full border-2 border-brand-dark bg-brand-mint -ml-4 shadow-sm z-20"></div>
+                        <div class="w-14 h-14 rounded-full border-2 border-brand-dark bg-brand-peach -ml-4 shadow-sm z-30"></div>
+                        <div class="w-14 h-14 rounded-full border-2 border-brand-dark bg-white -ml-4 flex items-center justify-center font-bold text-sm z-40">+12</div>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none mix-blend-difference">
+                            <i data-lucide="mouse-pointer-2" class="w-12 h-12 text-white fill-current rotate-12 opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8 SOCIAL PROOF -->
+    <section class="py-24 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-16 text-center">Loved by facilitators everywhere</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-yellow mr-3 font-bold flex items-center justify-center">J</div>
+                        <div>
+                            <p class="font-bold text-sm">Jane Doe</p>
+                            <p class="text-xs text-gray-500">Design Sprint Master, IDEO</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">"Butter has completely changed the way I run remote workshops. The built-in music and timers keep everyone engaged."</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-mint mr-3 font-bold flex items-center justify-center text-brand-dark">A</div>
+                        <div>
+                            <p class="font-bold text-sm">Alex Smith</p>
+                            <p class="text-xs text-gray-500">Agile Coach, Spotify</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">"It’s like Zoom but actually fun and designed for collaboration. The agendas feature means I never have to awkwardly screen share a doc again."</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-lavender mr-3 font-bold flex items-center justify-center">S</div>
+                        <div>
+                            <p class="font-bold text-sm">Sarah Lee</p>
+                            <p class="text-xs text-gray-500">Product Manager, Miro</p>
+                        </div>
+                    </div>
+                    <p class="text-sm">"I've tried every tool out there. Butter is simply the best for running high-energy, structured sessions without the tab switching."</p>
+                </div>
+                <!-- More cards can be added here -->
+            </div>
+            <div class="mt-12 text-center">
+                <a href="#" class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white font-bold hover:bg-gray-50 transition-colors inline-block text-sm">Read all Wall of Love</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9 BRAND EXPRESSION SECTION -->
+    <section class="py-32 px-6 overflow-hidden relative text-center">
+        <!-- Floating Letters (simplified circle via JS below) -->
+        <div class="circle-text-container animate-float mb-16" id="circleText">
+            <!-- Letters injection via script -->
+        </div>
+
+        <div class="max-w-2xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Built for facilitators, by facilitators.</h2>
+            <p class="text-lg opacity-80">We've built Butter with love from our community from day one. Level up your workshopping, facilitation, and collaboration skills by learning from our network of experts.</p>
+            <a href="#" class="mt-8 px-6 py-3 rounded-full border-2 border-brand-dark bg-white font-bold hover:bg-gray-50 transition-colors inline-block text-sm">Join Community</a>
+        </div>
+    </section>
+
+    <!-- 10 FAQ SECTION -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-6xl md:text-8xl font-display font-extrabold mb-12 flex flex-col items-start leading-[0.9]">
+                <span>What.</span>
+                <span>The.</span>
+                <span>FAQ?</span>
+            </h2>
+
+            <div class="space-y-4">
+                <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 hover:bg-gray-50 text-lg font-display">
+                        Why should I use Butter?
+                        <span class="transition group-open:rotate-45">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                        To run engaging, structured, and joyful sessions! It puts all your facilitation tools in one place, ending the nightmare of juggling tabs.
+                    </div>
+                </details>
+                <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 hover:bg-gray-50 text-lg font-display">
+                        What types of sessions is Butter best for?
+                        <span class="transition group-open:rotate-45">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                        Workshops, training sessions, design sprints, all-hands meetings, and any collaborative sync where engagement matters.
+                    </div>
+                </details>
+                <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 hover:bg-gray-50 text-lg font-display">
+                        Is Butter free?
+                        <span class="transition group-open:rotate-45">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                        Yes! You can get started for free on our basic plan. We also have Pro and Enterprise plans for advanced features.
+                    </div>
+                </details>
+                <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 hover:bg-gray-50 text-lg font-display">
+                        How many participants can join a session?
+                        <span class="transition group-open:rotate-45">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                        Up to 200 participants can join depending on your plan tier. Perfect for large all-hands or interactive webinars.
+                    </div>
+                </details>
+                <details class="group bg-white border border-gray-200 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer p-6 hover:bg-gray-50 text-lg font-display">
+                        Is Butter GDPR compliant?
+                        <span class="transition group-open:rotate-45">
+                            <i data-lucide="plus" class="w-6 h-6"></i>
+                        </span>
+                    </summary>
+                    <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                        Absolutely. We take privacy and security very seriously. All European data is hosted in the EU.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11 FINAL CTA -->
+    <section class="bg-brand-dark text-white py-24 px-6 text-center border-b border-gray-800">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Ready to run buttery-smooth virtual sessions?</h2>
+            <p class="text-xl mb-10 text-gray-400">It's time to experience Butter for yourself!</p>
+            <a href="signup.html" class="px-10 py-5 rounded-full border-2 border-white bg-white text-brand-dark font-display font-bold text-lg hover:bg-gray-100 transition-colors shadow-playful inline-block">Get started for free</a>
+        </div>
+    </section>
+
+    <!-- 12 FOOTER -->
+    <footer class="bg-brand-dark text-white pt-20 pb-10 px-6 font-sm">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
+            <div class="col-span-2">
+                <div class="flex items-center space-x-2 font-display font-bold text-2xl tracking-tight mb-6">
+                    <span class="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-brand-dark text-sm">B</span>
+                    <span>Butter</span>
+                </div>
+                <p class="text-gray-400 max-w-xs mb-6">Bringing joy, structure, and engagement back to virtual meetings and workshops.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 font-display">Product</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-brand-yellow transition-colors">Features</a></li>
+                    <li><a href="#" class="hover:text-brand-yellow transition-colors">Pricing</a></li>
+                    <li><a href="#" class="hover:text-brand-yellow transition-colors">Integrations</a></li>
+                    <li><a href="#" class="hover:text-brand-yellow transition-colors">Templates</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 font-display">Resources</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-mint transition-colors">Blog</a></li>
+                    <li><a href="#" class="hover:text-mint transition-colors">Community</a></li>
+                    <li><a href="#" class="hover:text-mint transition-colors">Help Center</a></li>
+                    <li><a href="#" class="hover:text-mint transition-colors">Guides</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 font-display">Company</h4>
+                <ul class="space-y-2 text-gray-400">
+                    <li><a href="#" class="hover:text-brand-pink transition-colors">About</a></li>
+                    <li><a href="#" class="hover:text-brand-pink transition-colors">Careers</a></li>
+                    <li><a href="#" class="hover:text-brand-pink transition-colors">Contact</a></li>
+                    <li><a href="#" class="hover:text-brand-pink transition-colors">Legal</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+            <p>&copy; 2026 Butter. All rights reserved.</p>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a href="#" class="hover:text-white"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Circular Text Script (Brand Expression Section)
+        const text = "bu i l t by f ac i l i t ators  ";
+        const container = document.getElementById('circleText');
+        const radius = 120;
+        const totalChars = text.length;
+        
+        for (let i = 0; i < totalChars; i++) {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'circle-char';
+            charSpan.innerText = text[i];
+            
+            // Calculate angle
+            const angle = (i / totalChars) * 360;
+            // Position using rotate and translate
+            charSpan.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translate(${radius}px) rotate(90deg)`;
+            charSpan.style.color = (i % 2 === 0) ? '#1B1C33' : '#1B1C33'; // All dark for now, could alternate pastels
+            
+            container.appendChild(charSpan);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+    <script>
+        const { animate, inView, stagger } = Motion;
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById("mobile-menu-btn");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+        const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+
+        if (menuBtn && closeMenuBtn && mobileMenuOverlay) {
+            menuBtn.addEventListener("click", () => {
+                mobileMenuOverlay.style.transform = "translateY(0)";
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            });
+
+            closeMenuBtn.addEventListener("click", () => {
+                mobileMenuOverlay.style.transform = "translateY(100%)";
+                document.body.style.overflow = ""; // Restore scrolling
+            });
+        }
+
+        // Set initial states to avoid popper effects
+        document.querySelectorAll("nav, h1, h1 + p, .flex.flex-col.sm\\:flex-row a, .animate-float").forEach(el => {
+            if(el) el.style.opacity = '0';
+        });
+
+        // Initial Page Load Animations (Hero Section)
+        animate("nav", { y: [-20, 0], opacity: [0, 1] }, { duration: 0.8, easing: "ease-out" });
+        animate("h1", { y: [30, 0], opacity: [0, 1] }, { duration: 0.8, delay: 0.2, easing: "ease-out" });
+        animate("h1 + p", { y: [20, 0], opacity: [0, 1] }, { duration: 0.8, delay: 0.4, easing: "ease-out" });
+        animate(".flex.flex-col.sm\\:flex-row a", { y: [20, 0], opacity: [0, 1] }, { duration: 0.6, delay: stagger(0.1, { startDelay: 0.5 }) });
+        
+        // Wait a bit before starting the float animation to let it fade in first
+        animate(".animate-float", { y: [40, 0], opacity: [0, 1] }, { duration: 1, delay: 0.6, easing: "ease-out" });
+
+        // Scroll Animations for all sections
+        const sections = document.querySelectorAll("section:not(:first-child)");
+        sections.forEach((section) => {
+            const heading = section.querySelector("h2:not(.pointer-events-none)"); // Exclude huge rotated text from standard heading anim
+            const content = section.querySelector("p");
+            const blocks = Array.from(section.querySelectorAll("div.bg-brand-lavender, div.bg-brand-mint, div.bg-brand-peach, div.bg-brand-pink"));
+            const logos = Array.from(section.querySelectorAll("h3.tracking-wider"));
+            const hugeWords = Array.from(section.querySelectorAll("h2.rotate-neg-4, h2.rotate-pos-2"));
+            const items = Array.from(section.querySelectorAll(".space-y-3 > div, .space-y-4 > div, .bg-white.p-6.rounded-2xl"));
+            
+            // Set initial capacities purely for visual cleanliness before inview triggers
+            if (heading) heading.style.opacity = '0';
+            if (content) content.style.opacity = '0';
+            blocks.forEach(b => b.style.opacity = '0');
+            logos.forEach(l => l.style.opacity = '0');
+            hugeWords.forEach(h => h.style.opacity = '0');
+            items.forEach(i => i.style.opacity = '0');
+
+            let hasRun = false;
+            inView(section, () => {
+                if (hasRun) return;
+                hasRun = true;
+
+                if (heading) animate(heading, { opacity: [0, 1], y: [30, 0] }, { duration: 0.7, easing: "ease-out" });
+                if (content) animate(content, { opacity: [0, 1], y: [20, 0] }, { duration: 0.7, delay: 0.2, easing: "ease-out" });
+                
+                // Animate big containers
+                if (blocks.length > 0) {
+                    animate(blocks, { opacity: [0, 1], scale: [0.95, 1], y: [40, 0] }, { duration: 0.8, easing: [0.17, 0.55, 0.55, 1] });
+                }
+
+                // Animate huge rotated background text like "Plan.", "Run." etc.
+                if (hugeWords.length > 0) {
+                    animate(hugeWords, { opacity: [0, 1], scale: [0.8, 1], x: [-50, 0] }, { duration: 0.9, delay: 0.2, easing: "ease-out" });
+                }
+
+                // Logos stagger
+                if (logos.length > 0) {
+                    animate(logos, { opacity: [0, 1], y: [20, 0] }, { duration: 0.5, delay: stagger(0.1) });
+                }
+
+                // Features items inside blocks stagger
+                if (items.length > 0) {
+                    animate(items, { opacity: [0, 1], x: [-20, 0] }, { duration: 0.5, delay: stagger(0.15, { startDelay: 0.4 }) });
+                }
+            }, { margin: "-100px 0px" });
+        });
+    </script>
+</body>
+</html>
