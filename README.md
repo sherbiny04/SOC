@@ -195,4 +195,4 @@ SOC/
 | Hadi | Project setup, models, Postman, frontend integration |
 | Marwan | Models, routes/controllers, auth system |
 | Anas | API endpoints, filters, pagination, error handling |
-| Sherbiny | Code review, integration testing, QA |
+| Sherbiny | Code review, integration testing, QA, frontend |
