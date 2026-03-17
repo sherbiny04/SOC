@@ -11,5 +11,6 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.2"
-  }
+  },
+  "description": "updated backend"
 }
