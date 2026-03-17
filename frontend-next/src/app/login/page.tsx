@@ -70,14 +70,14 @@ export default function LoginPage() {
             <label className="block font-bold mb-2 text-sm uppercase tracking-wide text-brand-dark/80" htmlFor="email">Work Email</label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/50" />
-              <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="input-neo pl-12" placeholder="name@company.com" required />
+              <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="input-neo !pl-12" placeholder="name@company.com" required />
             </div>
           </div>
           <div>
             <label className="block font-bold mb-2 text-sm uppercase tracking-wide text-brand-dark/80" htmlFor="password">Password</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/50" />
-              <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} className="input-neo pl-12" placeholder="••••••••" required />
+              <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} className="input-neo !pl-12" placeholder="••••••••" required />
             </div>
           </div>
           <div className="flex items-center justify-between text-sm font-semibold pt-2">

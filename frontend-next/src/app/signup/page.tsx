@@ -73,14 +73,14 @@ export default function SignupPage() {
             <label className="block font-bold mb-2 text-sm uppercase tracking-wide text-brand-dark/80" htmlFor="email">Work Email</label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/50" />
-              <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="input-neo pl-12" placeholder="alex@company.com" required />
+              <input type="email" id="email" value={email} onChange={e => setEmail(e.target.value)} className="input-neo !pl-12" placeholder="alex@company.com" required />
             </div>
           </div>
           <div>
             <label className="block font-bold mb-2 text-sm uppercase tracking-wide text-brand-dark/80" htmlFor="password">Password</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-dark/50" />
-              <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} className="input-neo pl-12" placeholder="Min. 8 characters" required />
+              <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} className="input-neo !pl-12" placeholder="Min. 8 characters" required />
             </div>
           </div>
           <button type="submit" className="w-full bg-brand-pink border-2 border-brand-dark rounded-xl py-4 mt-8 font-display font-bold text-xl shadow-playful hover:translate-y-0.5 hover:shadow-playful-sm transition-all flex items-center justify-center space-x-2">
