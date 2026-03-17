@@ -18,7 +18,7 @@ app.use('/api/participants', require('./routes/participants'));
 app.use('/api/resources', require('./routes/resources'));
 app.use('/api/dashboard', require('./routes/dashboard'));
 
-app.get('/', (req, res) => res.json({ success: true, message: 'SOC API is running' }));
+app.get('/', (req, res) => res.json({ success: true, message: 'updated backend' }));
 
 app.use((req, res) => res.status(404).json({ success: false, message: 'Route not found' }));
 
