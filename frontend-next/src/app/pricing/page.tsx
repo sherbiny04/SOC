@@ -22,9 +22,9 @@ export default function PricingPage() {
           <span className={isAnnual ? "opacity-50" : ""}>Monthly</span>
           <button
             onClick={() => setIsAnnual(!isAnnual)}
-            className={`relative w-20 h-10 rounded-full border-2 border-brand-dark shadow-sm cursor-pointer transition-colors ${isAnnual ? "bg-brand-mint" : "bg-brand-yellow"}`}
+            className={`relative flex items-center w-20 h-10 rounded-full border-2 border-brand-dark shadow-sm cursor-pointer transition-colors ${isAnnual ? "bg-brand-mint" : "bg-brand-yellow"}`}
           >
-            <span className={`absolute top-0.5 w-8 h-8 rounded-full bg-white border-2 border-brand-dark transition-transform ${isAnnual ? "translate-x-10" : "translate-x-0.5"}`}></span>
+            <span className={`absolute w-8 h-8 rounded-full bg-white border-2 border-brand-dark transition-transform ${isAnnual ? "translate-x-10" : "translate-x-1"}`}></span>
           </button>
           <span className={!isAnnual ? "opacity-50" : ""}>
             Annually{" "}
