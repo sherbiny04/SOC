@@ -9,7 +9,6 @@ export default function CommunityPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-peach pt-40 pb-24 px-6 relative border-b-2 border-brand-dark">
         <div className="max-w-5xl mx-auto text-center anim-fade-up">
           <h1 className="text-6xl md:text-8xl font-black leading-[1] mb-6 font-display tracking-tight inline-block relative">
@@ -25,10 +24,8 @@ export default function CommunityPage() {
 
       <ResourceFilters />
 
-      {/* RESOURCES GRID */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Discord (wide) */}
           <div className="group bg-brand-dark text-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(165,239,211,1)] hover:translate-y-[-4px] transition-all cursor-pointer flex flex-col lg:col-span-2">
             <div className="md:flex h-full">
               <div className="p-10 md:w-3/5 flex flex-col justify-center">
@@ -52,7 +49,6 @@ export default function CommunityPage() {
             </div>
           </div>
 
-          {/* AMA Event */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-yellow border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <div className="w-20 h-20 bg-brand-dark rounded-full flex items-center justify-center border-4 border-white shadow-playful group-hover:scale-110 transition-transform">
@@ -70,7 +66,6 @@ export default function CommunityPage() {
             </div>
           </div>
 
-          {/* Creator Spotlight */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-lavender border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <Award className="w-20 h-20 text-brand-dark rotate-neg-4 group-hover:rotate-0 transition-transform" />

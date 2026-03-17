@@ -27,7 +27,6 @@ h1, h2, h3, .font-display {
   font-family: var(--font-display), sans-serif;
 }
 
-/* Custom rotations */
 .rotate-neg-2 { transform: rotate(-3deg); }
 .rotate-pos-2 { transform: rotate(3deg); }
 .rotate-neg-4 { transform: rotate(-5deg); }
@@ -35,7 +34,6 @@ h1, h2, h3, .font-display {
 .rotate-neg-6 { transform: rotate(-6deg); }
 .rotate-pos-6 { transform: rotate(6deg); }
 
-/* Floating animation */
 @keyframes float {
   0% { transform: translate3d(0,0,0) rotate(0deg); }
   50% { transform: translate3d(0,-10px,0) rotate(2deg); }
@@ -47,30 +45,25 @@ h1, h2, h3, .font-display {
   backface-visibility: hidden;
 }
 
-/* Slide down animation */
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Fade in animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
 
-/* Accordion styling */
 details > summary { transition: background-color 0.2s ease; }
 details[open] > summary ~ div { animation: slideDown 0.3s ease-in-out; }
 summary::-webkit-details-marker { display: none; }
 
-/* Circular text */
 .circle-text-container {
   position: relative;
   width: 300px;
@@ -86,11 +79,9 @@ summary::-webkit-details-marker { display: none; }
   transform-origin: center;
 }
 
-/* Toggle Switch */
 .toggle-checkbox:checked { right: 0; border-color: #1B1C33; }
 .toggle-checkbox:checked + .toggle-label { background-color: #FFF584; }
 
-/* Neo inputs */
 .input-neo {
   @apply w-full p-4 border-2 border-brand-dark rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-lavender/50 transition-all;
 }
@@ -98,11 +89,9 @@ summary::-webkit-details-marker { display: none; }
   @apply w-full p-4 border-2 border-brand-dark rounded-xl focus:outline-none focus:ring-4 focus:ring-brand-peach/50 bg-white appearance-none transition-all cursor-pointer;
 }
 
-/* Dashboard page transitions */
 .page-content { display: none; }
 .page-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
 
-/* Custom scrollbar */
 .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(27,28,51,0.2); border-radius: 10px; }
@@ -110,9 +99,6 @@ summary::-webkit-details-marker { display: none; }
 .hidden-scrollbar::-webkit-scrollbar { display: none; }
 .hidden-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ============================================= */
-/*  Premium page-load animations — pure CSS      */
-/* ============================================= */
 @keyframes gentleFadeUp {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -129,7 +115,6 @@ summary::-webkit-details-marker { display: none; }
 .anim-delay-4 { animation-delay: 0.4s; }
 .anim-delay-5 { animation-delay: 0.5s; }
 
-/* Grid board background */
 .grid-board {
   background-image:
     linear-gradient(to right, rgba(27,28,51,0.05) 1px, transparent 1px),
@@ -137,12 +122,8 @@ summary::-webkit-details-marker { display: none; }
   background-size: 30px 30px;
 }
 
-/* ============================================= */
-/*  Dark mode — comprehensive overrides          */
-/* ============================================= */
 body.dark { color: #f1f5f9; background-color: #0f172a; }
 
-/* --- Backgrounds --- */
 body.dark .bg-white    { background-color: #1e293b !important; }
 body.dark .bg-\[\#F8F9FA\] { background-color: #0f172a !important; }
 body.dark .bg-gray-50  { background-color: #1e293b !important; }
@@ -154,14 +135,12 @@ body.dark .bg-white\/95 { background-color: rgba(30,41,59,0.95) !important; }
 body.dark .bg-white\/60 { background-color: rgba(30,41,59,0.6) !important; }
 body.dark .bg-green-100 { background-color: rgba(34,197,94,0.15) !important; }
 
-/* Mute bright accent backgrounds for dark surfaces */
 body.dark .bg-brand-yellow   { background-color: rgba(255,245,132,0.18) !important; }
 body.dark .bg-brand-mint     { background-color: rgba(165,239,211,0.18) !important; }
 body.dark .bg-brand-lavender { background-color: rgba(201,207,254,0.18) !important; }
 body.dark .bg-brand-peach    { background-color: rgba(254,224,178,0.18) !important; }
 body.dark .bg-brand-pink     { background-color: rgba(249,216,210,0.18) !important; }
 
-/* --- Text --- */
 body.dark .text-brand-dark     { color: #e2e8f0 !important; }
 body.dark .text-brand-dark\/80 { color: rgba(226,232,240,0.8) !important; }
 body.dark .text-brand-dark\/70 { color: rgba(226,232,240,0.7) !important; }
@@ -174,7 +153,6 @@ body.dark .text-gray-600 { color: #94a3b8 !important; }
 body.dark .text-gray-700 { color: #cbd5e1 !important; }
 body.dark .text-green-700 { color: #4ade80 !important; }
 
-/* --- Borders --- */
 body.dark .border-brand-dark     { border-color: #475569 !important; }
 body.dark .border-brand-dark\/10 { border-color: rgba(71,85,105,0.4) !important; }
 body.dark .border-brand-dark\/5  { border-color: rgba(71,85,105,0.2) !important; }
@@ -186,7 +164,6 @@ body.dark .border-black\/10 { border-color: rgba(255,255,255,0.08) !important; }
 body.dark .border-green-300 { border-color: rgba(34,197,94,0.3) !important; }
 body.dark .border-white\/20 { border-color: rgba(255,255,255,0.12) !important; }
 
-/* --- Shadows --- */
 body.dark .shadow-playful    { box-shadow: 4px 4px 0px 0px rgba(71,85,105,1) !important; }
 body.dark .shadow-playful-sm { box-shadow: 2px 2px 0px 0px rgba(71,85,105,1) !important; }
 body.dark .shadow-playful-lg { box-shadow: 8px 8px 0px 0px rgba(71,85,105,1) !important; }
@@ -197,7 +174,6 @@ body.dark .shadow-xl  { box-shadow: 0 10px 25px rgba(0,0,0,0.3) !important; }
 body.dark .shadow-2xl { box-shadow: 0 15px 50px rgba(0,0,0,0.4) !important; }
 body.dark .shadow-lg  { box-shadow: 0 8px 20px rgba(0,0,0,0.35) !important; }
 
-/* --- Hover states --- */
 body.dark .hover\:bg-gray-50:hover  { background-color: #334155 !important; }
 body.dark .hover\:bg-gray-100:hover { background-color: #475569 !important; }
 body.dark .hover\:bg-gray-200:hover { background-color: #475569 !important; }
@@ -207,15 +183,12 @@ body.dark .hover\:bg-brand-yellow:hover   { background-color: rgba(255,245,132,0
 body.dark .hover\:bg-brand-pink\/20:hover { background-color: rgba(249,216,210,0.1) !important; }
 body.dark .hover\:shadow-playful-sm:hover { box-shadow: 2px 2px 0px 0px rgba(71,85,105,1) !important; }
 
-/* --- Scrollbar --- */
 body.dark .custom-scrollbar::-webkit-scrollbar-thumb       { background: rgba(255,255,255,0.15); }
 body.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover  { background: rgba(255,255,255,0.3); }
 
-/* --- Forms --- */
 body.dark input, body.dark select, body.dark textarea { color: #e2e8f0; }
 body.dark input::placeholder, body.dark textarea::placeholder { color: rgba(148,163,184,0.5); }
 
-/* --- Grid board --- */
 body.dark .grid-board {
   background-image:
     linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),

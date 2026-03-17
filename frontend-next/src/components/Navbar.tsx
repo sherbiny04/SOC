@@ -52,7 +52,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-brand-yellow z-[100] flex flex-col items-center justify-center space-y-8 text-4xl font-display font-bold transition-transform duration-500 ease-in-out ${mobileOpen ? "translate-y-0" : "translate-y-full"}`}>
         <button onClick={() => setMobileOpen(false)} className="absolute top-6 right-6 p-2 text-brand-dark hover:bg-black/5 rounded-full focus:outline-none">
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

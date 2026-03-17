@@ -9,7 +9,6 @@ const buildPaginationAndSort = (query) => {
   return { page, limit, skip, sort: { [sortBy]: order } };
 };
 
-// POST /api/sessions
 exports.createSession = async (req, res) => {
   try {
     const session = await Session.create(req.body);
@@ -19,7 +18,6 @@ exports.createSession = async (req, res) => {
   }
 };
 
-// GET /api/sessions
 exports.getAllSessions = async (req, res) => {
   try {
     const { page, limit, skip, sort } = buildPaginationAndSort(req.query);
@@ -44,7 +42,6 @@ exports.getAllSessions = async (req, res) => {
   }
 };
 
-// GET /api/sessions/:id
 exports.getSessionById = async (req, res) => {
   try {
     const session = await Session.findById(req.params.id).populate('template').populate('participants');
@@ -55,7 +52,6 @@ exports.getSessionById = async (req, res) => {
   }
 };
 
-// PUT /api/sessions/:id
 exports.updateSession = async (req, res) => {
   try {
     const session = await Session.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -66,7 +62,6 @@ exports.updateSession = async (req, res) => {
   }
 };
 
-// DELETE /api/sessions/:id
 exports.deleteSession = async (req, res) => {
   try {
     const session = await Session.findByIdAndDelete(req.params.id);

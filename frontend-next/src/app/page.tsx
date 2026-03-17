@@ -8,7 +8,6 @@ export default function Home() {
     <div className="bg-white overflow-x-hidden">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-yellow pt-32 pb-20 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto text-center relative z-10 text-brand-dark mt-10">
             <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6 font-display tracking-tight anim-fade-up">
@@ -22,7 +21,6 @@ export default function Home() {
               <Link href="/demo" className="px-8 py-4 rounded-full border-2 border-brand-dark bg-white font-bold text-lg hover:bg-gray-50 transition-colors shadow-playful">Book a demo</Link>
             </div>
 
-          {/* Dashboard Mockup */}
           <div className="mt-16 relative mx-auto w-full max-w-4xl animate-float" style={{ animationDuration: "8s" }}>
             <div className="bg-white rounded-3xl border border-gray-200 shadow-2xl overflow-hidden aspect-video relative flex">
               <div className="w-16 border-r border-gray-100 flex flex-col items-center py-4 space-y-4 bg-gray-50">
@@ -53,7 +51,6 @@ export default function Home() {
         <Star className="absolute bottom-40 right-20 w-16 h-16 text-brand-dark/20 rotate-45 fill-current" />
       </section>
 
-      {/* TRUSTED BY */}
       <section className="py-12 border-b border-gray-100 bg-white">
         <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-center md:justify-between items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
           {["IKEA", "Miro", "WWF", "IDEO", "PayFit", "NIVEA"].map(brand => (
@@ -62,14 +59,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* VALUE STATEMENT */}
       <section className="py-24 px-6 text-center max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-display font-semibold leading-tight text-brand-dark">
           All your team&apos;s facilitation tools in one place. <span className="text-gray-400">Stop hosting snoozefests. Start collaborating effectively. Media Talk brings structure, <span className="bg-brand-yellow px-2 rounded-lg text-brand-dark inline-block rotate-neg-2">energy, and joy</span> to your meetings, workshops, and training sessions.</span>
         </h2>
       </section>
 
-      {/* PLAN */}
       <section className="py-24 px-6 mt-10 relative">
         <div className="max-w-6xl mx-auto relative">
           <h2 className="absolute -top-14 md:-top-20 left-0 md:-left-10 text-7xl md:text-[9rem] font-display font-extrabold rotate-neg-4 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Plan.</h2>
@@ -97,7 +92,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RUN */}
       <section className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto relative">
           <h2 className="absolute -top-14 md:-top-20 right-0 md:-right-6 text-7xl md:text-[9rem] font-display font-extrabold rotate-pos-2 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Run.</h2>
@@ -136,7 +130,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RECAP */}
       <section className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto relative">
           <h2 className="absolute -top-14 md:-top-20 left-0 md:-left-10 text-7xl md:text-[9rem] font-display font-extrabold rotate-neg-4 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Recap.</h2>
@@ -162,7 +155,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* COLLABORATE */}
       <section className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto relative">
           <h2 className="absolute -top-10 md:-top-16 left-0 md:left-10 text-6xl md:text-[8rem] font-display font-extrabold rotate-pos-2 text-brand-dark z-20 tracking-tighter drop-shadow-sm pointer-events-none">Collaborate.</h2>
@@ -187,7 +179,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF */}
       <section className="py-24 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-16 text-center">Loved by facilitators everywhere</h2>
@@ -215,18 +206,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BRAND EXPRESSION */}
       <section className="py-32 px-6 overflow-hidden relative text-center">
         <div className="relative w-full max-w-[300px] md:max-w-md mx-auto mb-20 aspect-square flex items-center justify-center anim-fade-up">
-          {/* Background Glow */}
           <div className="absolute inset-0 bg-brand-yellow/30 rounded-full blur-[60px] animate-pulse"></div>
           
-          {/* Inner Core */}
           <div className="relative w-32 h-32 md:w-48 md:h-48 bg-brand-yellow rounded-full border-4 border-brand-dark shadow-playful-lg flex items-center justify-center z-10 animate-float">
             <Heart className="w-12 h-12 md:w-20 md:h-20 text-brand-dark fill-current shadow-sm" />
           </div>
           
-          {/* Orbiting Icons */}
           <div className="absolute w-full h-full animate-[spin_15s_linear_infinite]">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-16 md:h-16 bg-brand-pink rounded-full border-2 border-brand-dark flex items-center justify-center shadow-playful-sm animate-[spin_15s_linear_infinite_reverse]">
                 <Users className="w-5 h-5 md:w-7 md:h-7 text-brand-dark" />
@@ -242,7 +229,6 @@ export default function Home() {
              </div>
           </div>
           
-          {/* Decor dots */}
           <div className="absolute -top-4 -left-4 w-4 h-4 bg-brand-mint rounded-full border border-brand-dark z-20"></div>
           <div className="absolute -bottom-8 -right-4 w-6 h-6 bg-brand-pink rounded-full border border-brand-dark z-20"></div>
           <div className="absolute top-1/4 -right-10 w-3 h-3 bg-brand-lavender rounded-full border border-brand-dark z-20"></div>
@@ -255,7 +241,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-24 px-6 bg-white">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-6xl md:text-8xl font-display font-extrabold mb-12 flex flex-col items-start leading-[0.9]">
@@ -285,7 +270,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="bg-brand-dark text-white py-24 px-6 text-center border-b border-gray-800">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Ready to run seamlessly smooth virtual sessions?</h2>

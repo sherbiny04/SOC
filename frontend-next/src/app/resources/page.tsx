@@ -9,7 +9,6 @@ export default function ResourcesPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-yellow pt-40 pb-24 px-6 relative border-b-2 border-brand-dark">
         <div className="max-w-5xl mx-auto text-center anim-fade-up">
           <h1 className="text-6xl md:text-8xl font-black leading-[1] mb-6 font-display tracking-tight inline-block relative">
@@ -25,10 +24,8 @@ export default function ResourcesPage() {
 
       <ResourceFilters />
 
-      {/* RESOURCES GRID */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Card 1 - Design Sprint Template */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-pink border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <div className="bg-white rounded-xl p-4 shadow-sm rotate-neg-4 border-2 border-brand-dark group-hover:rotate-0 transition-transform z-10 font-bold text-xl">Sprint Agenda 🗺️</div>
@@ -45,7 +42,6 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          {/* Card 2 - Guide */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-lavender border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <BookOpen className="w-20 h-20 text-brand-dark rotate-12 group-hover:-rotate-12 transition-transform duration-500" />
@@ -61,7 +57,6 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          {/* Card 3 - Community */}
           <div className="group bg-brand-dark text-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(165,239,211,1)] hover:translate-y-[-4px] transition-all cursor-pointer flex flex-col">
             <div className="p-10 flex-1 flex flex-col justify-center text-center">
               <h3 className="text-3xl font-display font-bold mb-4 text-brand-mint">Join the Facilitator Community</h3>
@@ -70,7 +65,6 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          {/* Card 4 - Wide template */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col lg:col-span-2">
             <div className="md:flex h-full">
               <div className="md:w-2/5 bg-brand-peach border-r-2 border-brand-dark flex items-center justify-center p-8 relative overflow-hidden min-h-[200px]">
@@ -89,7 +83,6 @@ export default function ResourcesPage() {
             </div>
           </div>
 
-          {/* Card 5 - Product Update */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-mint/50 border-b-2 border-brand-dark flex items-center justify-center p-6 relative">
               <Zap className="w-20 h-20 text-brand-dark group-hover:scale-125 transition-transform duration-500" />

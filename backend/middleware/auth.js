@@ -5,9 +5,8 @@ const verifyToken = (req, res, next) => {
     if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
 
     try {
-        // Expected format: "Bearer <token>"
         const decoded = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET || 'secretkey');
-        req.user = decoded; // Attach user payload to request
+        req.user = decoded;
         next();
     } catch (error) {
         res.status(400).json({ message: 'Invalid token.' });

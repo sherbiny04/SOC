@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Participant = require('./models/Participant');
 const Resource = require('./models/Resource');
-// Import User, Session, Template models as well...
 
 dotenv.config();
 
@@ -11,11 +10,9 @@ const seedData = async () => {
         await mongoose.connect(process.env.MONGO_URI);
         console.log('Connected to DB for seeding...');
 
-        // Clear existing data
         await Participant.deleteMany();
         await Resource.deleteMany();
 
-        // 5 Sample Participants
         const participants = [
             { name: "Alice", role: "Admin", email: "alice@test.com" },
             { name: "Bob", role: "Facilitator", email: "bob@test.com" },
@@ -24,7 +21,6 @@ const seedData = async () => {
             { name: "Eve", role: "Contributor", email: "eve@test.com" }
         ];
 
-        // 5 Sample Resources
         const resources = [
             { title: "Manual", type: "PDF", size: "2MB" },
             { title: "Slides", type: "PPTX", size: "10MB" },

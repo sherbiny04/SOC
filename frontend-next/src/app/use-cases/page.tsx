@@ -7,7 +7,6 @@ export default function UseCasesPage() {
     <div className="bg-brand-mint text-brand-dark overflow-x-hidden antialiased selection:bg-brand-dark selection:text-brand-mint">
       <Navbar />
 
-      {/* HERO */}
       <section className="pt-40 pb-20 px-6 relative border-b-4 border-brand-dark z-10 flex flex-col items-center">
         <div className="max-w-4xl mx-auto text-center anim-fade-up">
           <div className="inline-block bg-white border-2 border-brand-dark px-4 py-2 rounded-xl rotate-3 mb-6 shadow-sm font-bold">
@@ -22,7 +21,6 @@ export default function UseCasesPage() {
         </div>
       </section>
 
-      {/* ROLLING BANNER */}
       <div className="bg-brand-dark text-brand-yellow font-display font-bold text-2xl py-4 flex overflow-hidden border-b-2 border-brand-dark whitespace-nowrap">
         <div className="animate-marquee px-4 flex items-center space-x-8">
           <span>✧ DESIGN SPRINTS</span><span>✧ ROADMAP PLANNING</span><span>✧ RETROSPECTIVES</span><span>✧ ALL HANDS</span><span>✧ BRAINSTORMING</span>
@@ -30,10 +28,8 @@ export default function UseCasesPage() {
         </div>
       </div>
 
-      {/* CASES CARDS */}
       <section className="py-32 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Case 1 - Workshops */}
           <div className="bg-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden">
             <div className="w-16 h-16 bg-brand-yellow rounded-full border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
               <PenTool className="w-8 h-8" />
@@ -48,7 +44,6 @@ export default function UseCasesPage() {
             <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-yellow rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
           </div>
 
-          {/* Case 2 - Training */}
           <div className="bg-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden mt-10 lg:mt-24">
             <div className="w-16 h-16 bg-brand-lavender rounded-full border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 transition-transform">
               <GraduationCap className="w-8 h-8" />
@@ -63,7 +58,6 @@ export default function UseCasesPage() {
             <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-lavender rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
           </div>
 
-          {/* Case 3 - All Hands */}
           <div className="bg-brand-dark text-white p-10 rounded-[3rem] border-2 border-brand-dark shadow-[12px_12px_0px_0px_rgba(255,245,132,1)] relative group overflow-hidden">
             <div className="w-16 h-16 bg-brand-peach rounded-2xl border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:rotate-12 transition-transform text-brand-dark">
               <Users className="w-8 h-8" />
@@ -77,7 +71,6 @@ export default function UseCasesPage() {
             </ul>
           </div>
 
-          {/* Case 4 - Socials */}
           <div className="bg-brand-peach p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative group overflow-hidden mt-10 lg:mt-24">
             <div className="w-16 h-16 bg-white rounded-xl rotate-45 border-2 border-brand-dark flex items-center justify-center mb-8 shadow-sm group-hover:rotate-0 transition-transform text-brand-dark mx-4">
               <Coffee className="w-8 h-8 -rotate-45 group-hover:rotate-0 transition-transform" />
@@ -93,7 +86,6 @@ export default function UseCasesPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="max-w-5xl mx-auto px-6 pb-32">
         <div className="bg-brand-pink border-2 border-brand-dark rounded-[3rem] p-16 text-center shadow-playful-lg relative overflow-hidden">
           <h2 className="text-5xl font-display font-extrabold mb-6 relative z-10 w-full">Ready to try it yourself?</h2>

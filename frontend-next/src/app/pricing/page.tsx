@@ -12,14 +12,12 @@ export default function PricingPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HEADER / TOGGLE */}
       <section className="pt-40 pb-16 px-6 text-center max-w-4xl mx-auto relative z-10">
         <h1 className="text-6xl md:text-8xl font-black mb-6 font-display tracking-tight text-brand-dark anim-fade-up">
           Simple pricing.<br />No surprises.
         </h1>
         <p className="text-xl md:text-2xl mb-12 text-brand-dark/80 font-medium anim-fade-up anim-delay-1">Start for free. Upgrade when your team grows.</p>
 
-        {/* Toggle */}
         <div className="flex items-center justify-center space-x-4 font-bold text-lg anim-fade-up anim-delay-2">
           <span className={isAnnual ? "opacity-50" : ""}>Monthly</span>
           <button
@@ -37,10 +35,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* PRICING CARDS */}
       <section className="pb-32 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
-          {/* FREE TIER */}
           <div className="bg-white rounded-[2.5rem] p-10 border-2 border-brand-dark shadow-playful-lg relative">
             <h3 className="text-3xl font-display font-black mb-2">Free</h3>
             <p className="text-brand-dark/70 font-medium h-12">Perfect for side projects &amp; trial.</p>
@@ -59,7 +55,6 @@ export default function PricingPage() {
             </ul>
           </div>
 
-          {/* PRO TIER */}
           <div className="bg-brand-mint rounded-[2.5rem] p-10 border-2 border-brand-dark shadow-playful-xl relative transform md:-translate-y-6">
             <div className="absolute -top-5 inset-x-0 flex justify-center">
               <span className="bg-brand-dark text-brand-yellow font-black px-6 py-2 border-2 border-brand-dark rounded-full shadow-sm">Most Popular 🔥</span>
@@ -82,7 +77,6 @@ export default function PricingPage() {
             </ul>
           </div>
 
-          {/* ENTERPRISE TIER */}
           <div className="bg-white rounded-[2.5rem] p-10 border-2 border-brand-dark shadow-playful-lg relative">
             <h3 className="text-3xl font-display font-black mb-2">Enterprise</h3>
             <p className="text-brand-dark/70 font-medium h-12">Security &amp; scale for large orgs.</p>
@@ -102,7 +96,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-24 px-6 bg-brand-pink border-t-2 border-brand-dark border-b-2">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl font-display font-extrabold text-center mb-16">Pricing FAQ 🤔</h2>
@@ -126,7 +119,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="bg-brand-dark py-12 px-6 flex items-center justify-center">
         <div className="flex items-center space-x-2 font-display font-bold text-lg text-white">
           <span className="w-6 h-6 rounded-full bg-brand-yellow flex items-center justify-center text-brand-dark text-xs border border-brand-dark">B</span>

@@ -9,7 +9,6 @@ export default function GuidesPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-lavender pt-40 pb-24 px-6 relative border-b-2 border-brand-dark">
         <div className="max-w-5xl mx-auto text-center anim-fade-up">
           <h1 className="text-6xl md:text-8xl font-black leading-[1] mb-6 font-display tracking-tight inline-block relative">
@@ -25,10 +24,8 @@ export default function GuidesPage() {
 
       <ResourceFilters />
 
-      {/* RESOURCES GRID */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Card 1 - Kill the Silence (wide) */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col lg:col-span-2">
             <div className="md:flex h-full">
               <div className="md:w-2/5 bg-brand-pink border-r-2 border-brand-dark flex items-center justify-center p-8 relative overflow-hidden min-h-[200px]">
@@ -46,7 +43,6 @@ export default function GuidesPage() {
             </div>
           </div>
 
-          {/* Card 2 - Difficult Participants */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-yellow border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <AlertOctagon className="w-20 h-20 text-brand-dark group-hover:scale-125 transition-transform duration-500" />
@@ -62,7 +58,6 @@ export default function GuidesPage() {
             </div>
           </div>
 
-          {/* Card 3 - Tech Check */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-mint border-b-2 border-brand-dark flex items-center justify-center p-6 relative overflow-hidden">
               <Laptop className="w-20 h-20 text-brand-dark rotate-12 group-hover:rotate-0 transition-transform duration-500" />
@@ -78,7 +73,6 @@ export default function GuidesPage() {
             </div>
           </div>
 
-          {/* Card 4 - Async vs Sync */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-peach border-b-2 border-brand-dark flex flex-col items-center justify-center p-6 relative overflow-hidden">
               <div className="flex items-center space-x-4">
@@ -98,7 +92,6 @@ export default function GuidesPage() {
             </div>
           </div>
 
-          {/* Request Topic */}
           <div className="group bg-brand-dark text-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(201,207,254,1)] hover:translate-y-[-4px] transition-all cursor-pointer flex flex-col">
             <div className="p-10 flex-1 flex flex-col justify-center text-center">
               <h3 className="text-3xl font-display font-bold mb-4 text-brand-lavender">Request a Topic</h3>

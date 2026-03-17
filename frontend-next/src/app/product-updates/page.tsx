@@ -9,7 +9,6 @@ export default function ProductUpdatesPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-pink pt-40 pb-24 px-6 relative border-b-2 border-brand-dark">
         <div className="max-w-5xl mx-auto text-center anim-fade-up">
           <h1 className="text-6xl md:text-8xl font-black leading-[1] mb-6 font-display tracking-tight inline-block relative">
@@ -25,10 +24,8 @@ export default function ProductUpdatesPage() {
 
       <ResourceFilters />
 
-      {/* RESOURCES GRID */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Breakout Rooms 2.0 (wide) */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col lg:col-span-2">
             <div className="md:flex h-full">
               <div className="md:w-2/5 bg-brand-mint border-r-2 border-brand-dark flex flex-col items-center justify-center p-8 relative overflow-hidden min-h-[200px]">
@@ -50,7 +47,6 @@ export default function ProductUpdatesPage() {
             </div>
           </div>
 
-          {/* Miro Integration */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-yellow border-b-2 border-brand-dark flex items-center justify-center p-6 relative">
               <span className="text-6xl font-black font-display text-brand-dark/80 group-hover:scale-110 transition-transform">Miro</span>
@@ -66,7 +62,6 @@ export default function ProductUpdatesPage() {
             </div>
           </div>
 
-          {/* Polls & Reactions */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-brand-lavender border-b-2 border-brand-dark flex items-center justify-center p-6 relative">
               <div className="flex gap-2">
@@ -86,7 +81,6 @@ export default function ProductUpdatesPage() {
             </div>
           </div>
 
-          {/* Speed */}
           <div className="group bg-white border-2 border-brand-dark rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_0px_rgba(27,28,51,1)] transition-all cursor-pointer flex flex-col">
             <div className="h-48 bg-gray-200 border-b-2 border-brand-dark flex items-center justify-center p-6 relative">
               <Activity className="w-20 h-20 text-brand-dark group-hover:text-green-500 transition-colors duration-500" />

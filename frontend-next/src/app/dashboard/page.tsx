@@ -27,9 +27,6 @@ import {
   FileText,
 } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
 
 interface FieldDef {
   key: string;
@@ -58,9 +55,6 @@ type PageKey =
   | "resources"
   | "settings";
 
-/* ------------------------------------------------------------------ */
-/*  Seed data                                                          */
-/* ------------------------------------------------------------------ */
 
 const initialEntities: Record<string, EntityConfig> = {
   sessions: {
@@ -146,9 +140,6 @@ const initialEntities: Record<string, EntityConfig> = {
   },
 };
 
-/* ------------------------------------------------------------------ */
-/*  Nav items config                                                   */
-/* ------------------------------------------------------------------ */
 
 const navMainItems: {
   page: PageKey;
@@ -164,9 +155,6 @@ const navMainItems: {
   { page: "resources", label: "Resources", icon: Folder, activeBg: "bg-brand-mint", hoverBg: "hover:bg-brand-mint" },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Helper: badge colour for status / role                             */
-/* ------------------------------------------------------------------ */
 
 function badgeClasses(value: string): string {
   if (value === "Upcoming" || value === "Admin")
@@ -178,12 +166,8 @@ function badgeClasses(value: string): string {
   return "bg-gray-200 border-gray-300 text-gray-700";
 }
 
-/* ------------------------------------------------------------------ */
-/*  Component                                                          */
-/* ------------------------------------------------------------------ */
 
 export default function DashboardPage() {
-  /* state */
   const [activePage, setActivePage] = useState<PageKey>("overview");
   const [entities, setEntities] = useState(initialEntities);
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -192,7 +176,6 @@ export default function DashboardPage() {
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [profileName, setProfileName] = useState("Amanda Seyfried");
 
-  /* dark‑mode: read localStorage on mount */
   useEffect(() => {
     if (localStorage.getItem("theme") === "dark") {
       setIsDarkMode(true);
@@ -200,7 +183,6 @@ export default function DashboardPage() {
     }
   }, []);
 
-  /* dark‑mode: sync body class + localStorage */
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark");
@@ -211,7 +193,6 @@ export default function DashboardPage() {
     }
   }, [isDarkMode]);
 
-  /* derived KPI values */
   const sessionsCount = entities.sessions.items.length;
   const completedCount = entities.sessions.items.filter(
     (s) => s.status === "Completed"
@@ -221,7 +202,6 @@ export default function DashboardPage() {
   ).length;
   const participantsKPI = entities.participants.items.length * 14 + 11;
 
-  /* -------- helpers -------- */
 
   const currentConfig: EntityConfig | null =
     activePage !== "overview" && activePage !== "settings"
@@ -242,7 +222,6 @@ export default function DashboardPage() {
       ? `Add ${currentConfig.label.slice(0, -1)}`
       : "";
 
-  /* -------- navigation -------- */
 
   function navigate(page: PageKey) {
     setActivePage(page);
@@ -251,7 +230,6 @@ export default function DashboardPage() {
     setFormValues({});
   }
 
-  /* -------- CRUD helpers -------- */
 
   function openFormForNew() {
     if (activePage === "overview") {
@@ -334,15 +312,9 @@ export default function DashboardPage() {
     setFormOpen(false);
   }
 
-  /* ================================================================ */
-  /*  RENDER                                                           */
-  /* ================================================================ */
-
   return (
     <div className="bg-[#F8F9FA] flex h-screen overflow-hidden antialiased">
-      {/* ====================== SIDEBAR ====================== */}
       <aside className="w-72 bg-white flex-col border-r-2 border-brand-dark z-20 hidden md:flex shrink-0 h-screen">
-        {/* Logo */}
         <div className="px-8 border-b-2 border-brand-dark flex items-center shrink-0 h-[88px] box-border">
           <Link
             href="/"
@@ -355,7 +327,6 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Nav */}
         <div className="p-6 flex-1 overflow-y-auto">
           <p className="text-xs font-bold text-brand-dark/50 uppercase tracking-widest mb-4 px-2">
             Main Menu
@@ -401,7 +372,6 @@ export default function DashboardPage() {
           </nav>
         </div>
 
-        {/* User */}
         <div className="p-6 border-t-2 border-brand-dark shrink-0">
           <div className="flex items-center space-x-3 p-3 rounded-2xl border-2 border-transparent hover:border-brand-dark hover:bg-brand-pink/20 transition-all cursor-pointer">
             <div className="w-10 h-10 rounded-full bg-brand-yellow border-2 border-brand-dark overflow-hidden flex items-center justify-center shrink-0">
@@ -417,9 +387,7 @@ export default function DashboardPage() {
         </div>
       </aside>
 
-      {/* ====================== MAIN CONTENT ====================== */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
-        {/* Header */}
         <header className="bg-white border-b-2 border-brand-dark px-6 md:px-10 py-5 flex items-center justify-between shrink-0 z-10 box-border h-[88px]">
           <div className="flex items-center space-x-4">
             <button className="md:hidden p-2 bg-gray-100 rounded-lg border-2 border-brand-dark">
@@ -457,14 +425,10 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 box-border custom-scrollbar">
-          {/* ================== OVERVIEW PAGE ================== */}
           {activePage === "overview" && (
             <div className="animate-[fadeIn_0.3s_ease-in-out]">
-              {/* KPI Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
-                {/* Total Sessions */}
                 <article className="bg-white rounded-3xl border-2 border-brand-dark p-6 shadow-playful hover:shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] transition-shadow">
                   <div className="w-12 h-12 bg-brand-yellow rounded-2xl border-2 border-brand-dark flex items-center justify-center mb-4">
                     <Calendar className="w-6 h-6" />
@@ -482,7 +446,6 @@ export default function DashboardPage() {
                   </div>
                 </article>
 
-                {/* Up / Done */}
                 <article className="bg-brand-mint rounded-3xl border-2 border-brand-dark p-6 shadow-playful hover:shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] transition-shadow">
                   <div className="w-12 h-12 bg-white rounded-2xl border-2 border-brand-dark flex items-center justify-center mb-4">
                     <CheckCircle className="w-6 h-6" />
@@ -501,7 +464,6 @@ export default function DashboardPage() {
                   </div>
                 </article>
 
-                {/* Participants */}
                 <article className="bg-brand-lavender rounded-3xl border-2 border-brand-dark p-6 shadow-playful hover:shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] transition-shadow">
                   <div className="w-12 h-12 bg-white rounded-2xl border-2 border-brand-dark flex items-center justify-center mb-4">
                     <Users className="w-6 h-6" />
@@ -516,7 +478,6 @@ export default function DashboardPage() {
                   </div>
                 </article>
 
-                {/* Top Template */}
                 <article className="bg-brand-pink rounded-3xl border-2 border-brand-dark p-6 shadow-playful hover:shadow-[6px_6px_0px_0px_rgba(27,28,51,1)] transition-shadow relative overflow-hidden group">
                   <Star className="w-32 h-32 absolute -bottom-6 -right-6 text-white opacity-40 -rotate-12 fill-current group-hover:rotate-12 transition-transform duration-500" />
                   <p className="text-sm font-bold text-brand-dark/70 uppercase tracking-wider mb-2 relative z-10">
@@ -531,9 +492,7 @@ export default function DashboardPage() {
                 </article>
               </div>
 
-              {/* Chart + Upcoming + Activity */}
               <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
-                {/* Engagement Chart */}
                 <article className="xl:col-span-2 bg-white rounded-3xl border-2 border-brand-dark p-8 shadow-playful flex flex-col">
                   <div className="flex items-center justify-between mb-8">
                     <div>
@@ -587,9 +546,7 @@ export default function DashboardPage() {
                   </div>
                 </article>
 
-                {/* Right column */}
                 <div className="space-y-6 flex flex-col h-full">
-                  {/* Upcoming */}
                   <article className="bg-white rounded-3xl border-2 border-brand-dark p-6 md:p-8 shadow-playful">
                     <div className="flex items-center justify-between mb-6">
                       <h2 className="text-xl font-display font-black">
@@ -631,7 +588,6 @@ export default function DashboardPage() {
                     </div>
                   </article>
 
-                  {/* Recent Activity */}
                   <article className="bg-brand-dark text-white rounded-3xl border-2 border-brand-dark p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(201,207,254,1)] flex-1">
                     <h2 className="text-xl font-display font-black mb-6 text-brand-lavender">
                       Recent Activity
@@ -688,17 +644,14 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* ================== CRUD PAGES ================== */}
           {currentConfig && activePage !== "settings" && (
             <div className="h-full animate-[fadeIn_0.3s_ease-in-out]">
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 lg:h-[calc(100vh-140px)]">
-                {/* Form Panel */}
                 {formOpen && (
                   <div className="w-full lg:w-[400px] shrink-0 lg:h-full lg:overflow-y-auto hidden-scrollbar transition-all">
                     <div
                       className={`${currentConfig.themeBg} rounded-3xl border-2 border-brand-dark p-6 md:p-8 shadow-playful relative transition-colors duration-300`}
                     >
-                      {/* Icon badge */}
                       <div
                         className={`absolute -top-4 -right-4 w-12 h-12 rounded-2xl bg-white border-2 border-brand-dark flex items-center justify-center shadow-sm z-10 ${
                           editingId !== null ? "-rotate-6" : "rotate-12"
@@ -802,7 +755,6 @@ export default function DashboardPage() {
                   </div>
                 )}
 
-                {/* Table */}
                 <div className="flex-1 bg-white rounded-3xl border-2 border-brand-dark shadow-playful flex flex-col lg:h-full overflow-hidden">
                   <div
                     className={`${currentConfig.themeBg} p-5 md:p-6 border-b-2 border-brand-dark flex justify-between items-center shrink-0 transition-colors duration-300`}
@@ -933,7 +885,6 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* ================== SETTINGS PAGE ================== */}
           {activePage === "settings" && (
             <div className="pb-10 animate-[fadeIn_0.3s_ease-in-out]">
               <div className="mb-8">
@@ -946,7 +897,6 @@ export default function DashboardPage() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Appearance */}
                 <div className="bg-white rounded-3xl border-2 border-brand-dark p-8 shadow-playful">
                   <h3 className="text-xl font-display font-bold mb-6 flex items-center">
                     <Palette className="w-5 h-5 mr-3 text-brand-dark" />{" "}
@@ -987,7 +937,6 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                {/* Profile */}
                 <div className="bg-brand-yellow rounded-3xl border-2 border-brand-dark p-8 shadow-playful">
                   <h3 className="text-xl font-display font-bold mb-6 flex items-center">
                     <User className="w-5 h-5 mr-3 text-brand-dark" /> Profile

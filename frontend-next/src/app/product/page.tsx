@@ -8,7 +8,6 @@ export default function ProductPage() {
     <div className="bg-gray-50 text-brand-dark overflow-x-hidden antialiased">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-brand-pink pt-40 pb-32 px-6 relative border-b-2 border-brand-dark overflow-hidden">
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "radial-gradient(#1B1C33 1px, transparent 1px)", backgroundSize: "24px 24px" }}></div>
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -32,7 +31,6 @@ export default function ProductPage() {
           </Link>
         </div>
 
-        {/* Animated UI components */}
         <div className="hidden lg:block absolute top-32 left-[10%] bg-white border-2 border-brand-dark p-4 rounded-2xl shadow-playful rotate-neg-6 animate-float">
           <div className="flex space-x-2 items-center">
             <div className="w-3 h-3 bg-red-400 rounded-full border border-brand-dark"></div>
@@ -47,14 +45,12 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* BENTO GRID FEATURES */}
       <section className="py-32 px-6 max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-7xl font-display font-bold">One tool to rule them all.</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:auto-rows-[340px]">
-          {/* Bento 1 - Timed Agendas */}
           <div className="md:col-span-2">
           <div className="h-full bg-brand-yellow p-8 md:p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative overflow-hidden flex flex-col justify-between group">
             <div className="relative z-20 md:max-w-md">
@@ -76,7 +72,6 @@ export default function ProductPage() {
           </div>
           </div>
 
-          {/* Bento 2 - Integrations */}
           <div className="h-full bg-brand-dark text-white p-8 md:p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg flex flex-col justify-between group hover:bg-black transition-colors">
             <div className="z-10">
               <h3 className="text-3xl lg:text-4xl font-display font-extrabold mb-4 text-brand-yellow">Integrations</h3>
@@ -91,7 +86,6 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* Bento 3 - Reactions */}
           <div className="h-full bg-brand-mint p-8 md:p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg flex flex-col items-center justify-center text-center group">
             <div className="bg-white p-6 rounded-full border-2 border-brand-dark mb-6 rotate-6 shadow-playful group-hover:rotate-12 group-hover:scale-110 transition-all cursor-pointer">
               <span className="text-5xl">👏</span>
@@ -100,7 +94,6 @@ export default function ProductPage() {
             <p className="font-medium opacity-80 mt-2">No more crickets.</p>
           </div>
 
-          {/* Bento 4 - Music Player */}
           <div className="md:col-span-2">
           <div className="h-full bg-brand-lavender p-8 md:p-10 rounded-[3rem] border-2 border-brand-dark shadow-playful-lg relative overflow-hidden flex flex-col justify-center group pointer-events-auto cursor-pointer">
             <h3 className="text-4xl lg:text-5xl font-display font-extrabold mb-4 z-10 w-2/3 group-hover:scale-105 origin-left transition-transform">Music player</h3>
@@ -111,7 +104,6 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="bg-brand-dark text-white pt-32 pb-12 px-6 font-sm border-t-8 border-brand-yellow">
         <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
           <h2 className="text-5xl md:text-7xl font-display font-bold mb-10 text-brand-yellow">Ready to facilitate?</h2>
