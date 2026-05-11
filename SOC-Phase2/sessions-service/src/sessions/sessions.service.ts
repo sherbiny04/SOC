@@ -2,12 +2,14 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Session, SessionDocument } from './session.schema';
+import { CreateSessionDto } from './dto/create-session.dto';
+import { UpdateSessionDto } from './dto/update-session.dto';
 
 @Injectable()
 export class SessionsService {
   constructor(@InjectModel(Session.name) private sessionModel: Model<SessionDocument>) {}
 
-  async create(createSessionDto: any): Promise<Session> {
+  async create(createSessionDto: CreateSessionDto): Promise<Session> {
     const createdSession = new this.sessionModel(createSessionDto);
     return createdSession.save();
   }
@@ -74,7 +76,7 @@ export class SessionsService {
     return session;
   }
 
-  async update(id: string, updateSessionDto: any): Promise<Session> {
+  async update(id: string, updateSessionDto: UpdateSessionDto): Promise<Session> {
     const updatedSession = await this.sessionModel.findByIdAndUpdate(
       id,
       updateSessionDto,
