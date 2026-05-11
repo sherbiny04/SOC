@@ -20,6 +20,7 @@ export class ProxyService {
         url: `${targetBaseUrl}${this.getTargetPath(request, options.stripPrefix)}`,
         data: this.methodAllowsBody(request.method) ? request.body : undefined,
         headers: this.getForwardHeaders(request),
+        timeout: 5000,
       }),
     );
 

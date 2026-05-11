@@ -32,7 +32,9 @@ export class DashboardService {
   }
 
   private async fetchCount(url: string): Promise<number> {
-    const response = await firstValueFrom(this.httpService.get<CountablePayload>(url));
+    const response = await firstValueFrom(
+      this.httpService.get<CountablePayload>(url, { timeout: 5000 }),
+    );
 
     return this.countDocuments(response.data);
   }
