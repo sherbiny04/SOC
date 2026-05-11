@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ParticipantsGatewayController } from './participants/participants-gateway.controller';
 import { ProxyService } from './proxy/proxy.service';
+import { ResourcesGatewayController } from './resources/resources-gateway.controller';
 import { SessionsGatewayController } from './sessions/sessions-gateway.controller';
 import { TemplatesGatewayController } from './templates/templates-gateway.controller';
 
@@ -27,6 +28,7 @@ import { TemplatesGatewayController } from './templates/templates-gateway.contro
   controllers: [
     AppController,
     ParticipantsGatewayController,
+    ResourcesGatewayController,
     SessionsGatewayController,
     TemplatesGatewayController,
   ],
