@@ -1,7 +1,6 @@
 const Session = require('../models/Session');
 const Participant = require('../models/Participant');
 
-// GET /api/dashboard/stats
 exports.getDashboardStats = async (req, res) => {
   try {
     const now = new Date();

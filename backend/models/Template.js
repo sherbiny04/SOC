@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const templateSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    category: { type: String, required: true },
+    title: { type: String, required: true },
     description: { type: String },
+    category: { type: String },
     content: { type: String },
   },
   { timestamps: true }

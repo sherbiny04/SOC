@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const sessionSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },
+    description: { type: String },
+    date: { type: Date, required: true },
     status: {
       type: String,
-      enum: ['upcoming', 'completed', 'cancelled'],
-      default: 'upcoming',
+      enum: ['scheduled', 'in-progress', 'completed', 'cancelled'],
+      default: 'scheduled',
     },
-    date: { type: Date, required: true },
     template: { type: mongoose.Schema.Types.ObjectId, ref: 'Template' },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Participant' }],
-    description: { type: String },
   },
   { timestamps: true }
 );
