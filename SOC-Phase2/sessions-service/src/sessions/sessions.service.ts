@@ -12,7 +12,14 @@ export class SessionsService {
     return createdSession.save();
   }
 
-  async findAll(status?: string, startDate?: string, endDate?: string): Promise<Session[]> {
+  async findAll(
+    status?: string,
+    startDate?: string,
+    endDate?: string,
+    page?: string,
+    limit?: string,
+    sortBy?: string,
+  ): Promise<{ data: Session[]; total: number; page: number; limit: number; totalPages: number }> {
     const query: any = {};
 
     if (status) {
@@ -29,7 +36,34 @@ export class SessionsService {
       }
     }
 
-    return this.sessionModel.find(query).exec();
+    const pageNumber = parseInt(page || '1', 10);
+    const limitNumber = parseInt(limit || '10', 10);
+    const skip = (pageNumber - 1) * limitNumber;
+
+    let sortOption: any = {};
+    if (sortBy) {
+      // expected format: field=desc or field=asc
+      const [field, order] = sortBy.split('=');
+      sortOption[field] = order === 'desc' ? -1 : 1;
+    } else {
+      sortOption['createdAt'] = -1; // Default sorting assuming timestamps are enabled
+    }
+
+    const total = await this.sessionModel.countDocuments(query).exec();
+    const data = await this.sessionModel
+      .find(query)
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limitNumber)
+      .exec();
+
+    return {
+      data,
+      total,
+      page: pageNumber,
+      limit: limitNumber,
+      totalPages: Math.ceil(total / limitNumber),
+    };
   }
 
   async findOne(id: string): Promise<Session> {

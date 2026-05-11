@@ -15,8 +15,11 @@ export class SessionsController {
     @Query('status') status?: string,
     @Query('startDate') startDate?: string,
     @Query('endDate') endDate?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('sortBy') sortBy?: string,
   ) {
-    return this.sessionsService.findAll(status, startDate, endDate);
+    return this.sessionsService.findAll(status, startDate, endDate, page, limit, sortBy);
   }
 
   @Get(':id')
