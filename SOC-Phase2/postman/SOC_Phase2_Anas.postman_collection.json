@@ -1,0 +1,380 @@
+{
+  "info": {
+    "_postman_id": "55cd3d73-d02b-4cb5-9e54-0a0a50020200",
+    "name": "SOC Phase 2 - Anas Bahaa",
+    "description": "API Gateway and Resources Microservice requests for Anas Bahaa. Includes auth, resources CRUD direct on 3004, resources CRUD through gateway on 3000, and a 28-request gateway proxy checklist.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register Gateway User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201 Created or 409 Already Registered', function () {",
+                  "  pm.expect([201, 409]).to.include(pm.response.code);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{gateway_base_url}}/auth/register"
+          }
+        },
+        {
+          "name": "Login Gateway User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201 Created', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "const json = pm.response.json();",
+                  "pm.test('Response includes access token', function () {",
+                  "  pm.expect(json.accessToken).to.be.a('string').and.not.empty;",
+                  "});",
+                  "pm.environment.set('jwt_token', json.accessToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{gateway_base_url}}/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Resources CRUD - Direct 3004",
+      "auth": { "type": "noauth" },
+      "item": [
+        {
+          "name": "Create Resource Direct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201 Created', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "const json = pm.response.json();",
+                  "pm.test('Resource id returned', function () {",
+                  "  pm.expect(json._id || json.id).to.be.a('string');",
+                  "});",
+                  "pm.environment.set('resource_id_direct', json._id || json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Direct Resource {{$timestamp}}\",\n  \"type\": \"link\",\n  \"url\": \"https://example.com/resources/direct/{{$timestamp}}\",\n  \"description\": \"Created directly against resources-service\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{resources_base_url}}/"
+          }
+        },
+        {
+          "name": "List Resources Direct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Response is an array', function () {",
+                  "  pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "GET", "header": [], "url": "{{resources_base_url}}/" }
+        },
+        {
+          "name": "Get Resource Direct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Returned requested resource', function () {",
+                  "  pm.expect(pm.response.json()._id).to.eql(pm.environment.get('resource_id_direct'));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "GET", "header": [], "url": "{{resources_base_url}}/{{resource_id_direct}}" }
+        },
+        {
+          "name": "Update Resource Direct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Resource was updated', function () {",
+                  "  pm.expect(pm.response.json().title).to.include('Updated Direct');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Direct Resource {{$timestamp}}\",\n  \"description\": \"Updated directly against resources-service\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{resources_base_url}}/{{resource_id_direct}}"
+          }
+        },
+        {
+          "name": "Delete Resource Direct",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "DELETE", "header": [], "url": "{{resources_base_url}}/{{resource_id_direct}}" }
+        }
+      ]
+    },
+    {
+      "name": "Resources CRUD - Gateway 3000",
+      "auth": {
+        "type": "bearer",
+        "bearer": [{ "key": "token", "value": "{{jwt_token}}", "type": "string" }]
+      },
+      "item": [
+        {
+          "name": "Create Resource Through Gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201 Created', function () {",
+                  "  pm.response.to.have.status(201);",
+                  "});",
+                  "const json = pm.response.json();",
+                  "pm.test('Gateway resource id returned', function () {",
+                  "  pm.expect(json._id || json.id).to.be.a('string');",
+                  "});",
+                  "pm.environment.set('resource_id_gateway', json._id || json.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Gateway Resource {{$timestamp}}\",\n  \"type\": \"document\",\n  \"url\": \"https://example.com/resources/gateway/{{$timestamp}}\",\n  \"description\": \"Created through the API gateway\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{gateway_base_url}}/resources"
+          }
+        },
+        {
+          "name": "List Resources Through Gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Gateway response is an array', function () {",
+                  "  pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/resources" }
+        },
+        {
+          "name": "Get Resource Through Gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Returned requested gateway resource', function () {",
+                  "  pm.expect(pm.response.json()._id).to.eql(pm.environment.get('resource_id_gateway'));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/resources/{{resource_id_gateway}}" }
+        },
+        {
+          "name": "Update Resource Through Gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('Gateway resource was updated', function () {",
+                  "  pm.expect(pm.response.json().title).to.include('Updated Gateway');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Gateway Resource {{$timestamp}}\",\n  \"type\": \"image\",\n  \"description\": \"Updated through the API gateway\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{gateway_base_url}}/resources/{{resource_id_gateway}}"
+          }
+        },
+        {
+          "name": "Delete Resource Through Gateway",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200 OK', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": { "method": "DELETE", "header": [], "url": "{{gateway_base_url}}/resources/{{resource_id_gateway}}" }
+        }
+      ]
+    },
+    {
+      "name": "Gateway Proxy Checklist - 28 Routes",
+      "description": "Checks GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS across /sessions, /templates, /participants, and /resources through the API gateway.",
+      "auth": {
+        "type": "bearer",
+        "bearer": [{ "key": "token", "value": "{{jwt_token}}", "type": "string" }]
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const handledStatuses = [200, 201, 204, 400, 404, 405, 500, 502, 503, 504];",
+              "pm.test('Gateway returned a handled proxy status', function () {",
+              "  pm.expect(handledStatuses).to.include(pm.response.code);",
+              "});",
+              "if (pm.request.method !== 'HEAD' && pm.response.code >= 400 && pm.response.text()) {",
+              "  const json = pm.response.json();",
+              "  pm.test('Gateway error response has standard shape', function () {",
+              "    pm.expect(json.success).to.eql(false);",
+              "    pm.expect(json.message).to.be.a('string');",
+              "  });",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "item": [
+        { "name": "GET /sessions", "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/sessions" } },
+        { "name": "POST /sessions", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/sessions" } },
+        { "name": "PUT /sessions/:id", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/sessions/checklist-id" } },
+        { "name": "PATCH /sessions/:id", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/sessions/checklist-id" } },
+        { "name": "DELETE /sessions/:id", "request": { "method": "DELETE", "header": [], "url": "{{gateway_base_url}}/sessions/checklist-id" } },
+        { "name": "HEAD /sessions", "request": { "method": "HEAD", "header": [], "url": "{{gateway_base_url}}/sessions" } },
+        { "name": "OPTIONS /sessions", "request": { "method": "OPTIONS", "header": [], "url": "{{gateway_base_url}}/sessions" } },
+        { "name": "GET /templates", "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/templates" } },
+        { "name": "POST /templates", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/templates" } },
+        { "name": "PUT /templates/:id", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/templates/checklist-id" } },
+        { "name": "PATCH /templates/:id", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/templates/checklist-id" } },
+        { "name": "DELETE /templates/:id", "request": { "method": "DELETE", "header": [], "url": "{{gateway_base_url}}/templates/checklist-id" } },
+        { "name": "HEAD /templates", "request": { "method": "HEAD", "header": [], "url": "{{gateway_base_url}}/templates" } },
+        { "name": "OPTIONS /templates", "request": { "method": "OPTIONS", "header": [], "url": "{{gateway_base_url}}/templates" } },
+        { "name": "GET /participants", "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/participants" } },
+        { "name": "POST /participants", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/participants" } },
+        { "name": "PUT /participants/:id", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/participants/checklist-id" } },
+        { "name": "PATCH /participants/:id", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/participants/checklist-id" } },
+        { "name": "DELETE /participants/:id", "request": { "method": "DELETE", "header": [], "url": "{{gateway_base_url}}/participants/checklist-id" } },
+        { "name": "HEAD /participants", "request": { "method": "HEAD", "header": [], "url": "{{gateway_base_url}}/participants" } },
+        { "name": "OPTIONS /participants", "request": { "method": "OPTIONS", "header": [], "url": "{{gateway_base_url}}/participants" } },
+        { "name": "GET /resources", "request": { "method": "GET", "header": [], "url": "{{gateway_base_url}}/resources" } },
+        { "name": "POST /resources", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Checklist Resource\",\n  \"type\": \"other\",\n  \"url\": \"https://example.com/checklist\",\n  \"description\": \"Gateway checklist request\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/resources" } },
+        { "name": "PUT /resources/:id", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/resources/checklist-id" } },
+        { "name": "PATCH /resources/:id", "request": { "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"title\": \"Checklist Update\"\n}", "options": { "raw": { "language": "json" } } }, "url": "{{gateway_base_url}}/resources/checklist-id" } },
+        { "name": "DELETE /resources/:id", "request": { "method": "DELETE", "header": [], "url": "{{gateway_base_url}}/resources/checklist-id" } },
+        { "name": "HEAD /resources", "request": { "method": "HEAD", "header": [], "url": "{{gateway_base_url}}/resources" } },
+        { "name": "OPTIONS /resources", "request": { "method": "OPTIONS", "header": [], "url": "{{gateway_base_url}}/resources" } }
+      ]
+    }
+  ]
+}
