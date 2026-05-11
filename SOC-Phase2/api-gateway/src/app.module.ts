@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ParticipantsGatewayController } from './participants/participants-gateway.controller';
 import { ProxyService } from './proxy/proxy.service';
@@ -23,6 +24,7 @@ import { TemplatesGatewayController } from './templates/templates-gateway.contro
       }),
     }),
     AuthModule,
+    DashboardModule,
     HttpModule,
   ],
   controllers: [
