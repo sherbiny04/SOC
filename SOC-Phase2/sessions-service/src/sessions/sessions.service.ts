@@ -12,8 +12,24 @@ export class SessionsService {
     return createdSession.save();
   }
 
-  async findAll(): Promise<Session[]> {
-    return this.sessionModel.find().exec();
+  async findAll(status?: string, startDate?: string, endDate?: string): Promise<Session[]> {
+    const query: any = {};
+
+    if (status) {
+      query.status = status;
+    }
+
+    if (startDate || endDate) {
+      query.date = {};
+      if (startDate) {
+        query.date.$gte = new Date(startDate);
+      }
+      if (endDate) {
+        query.date.$lte = new Date(endDate);
+      }
+    }
+
+    return this.sessionModel.find(query).exec();
   }
 
   async findOne(id: string): Promise<Session> {

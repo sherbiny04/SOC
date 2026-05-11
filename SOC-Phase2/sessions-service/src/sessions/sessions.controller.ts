@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 
 @Controller('sessions')
@@ -11,8 +11,12 @@ export class SessionsController {
   }
 
   @Get()
-  findAll() {
-    return this.sessionsService.findAll();
+  findAll(
+    @Query('status') status?: string,
+    @Query('startDate') startDate?: string,
+    @Query('endDate') endDate?: string,
+  ) {
+    return this.sessionsService.findAll(status, startDate, endDate);
   }
 
   @Get(':id')
