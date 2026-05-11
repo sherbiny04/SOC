@@ -9,7 +9,6 @@ const buildPaginationAndSort = (query) => {
   return { page, limit, skip, sort: { [sortBy]: order } };
 };
 
-// POST /api/resources
 exports.createResource = async (req, res) => {
   try {
     const resource = await Resource.create(req.body);
@@ -19,7 +18,6 @@ exports.createResource = async (req, res) => {
   }
 };
 
-// GET /api/resources
 exports.getAllResources = async (req, res) => {
   try {
     const { page, limit, skip, sort } = buildPaginationAndSort(req.query);
@@ -38,7 +36,6 @@ exports.getAllResources = async (req, res) => {
   }
 };
 
-// GET /api/resources/:id
 exports.getResourceById = async (req, res) => {
   try {
     const resource = await Resource.findById(req.params.id);
@@ -49,7 +46,6 @@ exports.getResourceById = async (req, res) => {
   }
 };
 
-// PUT /api/resources/:id
 exports.updateResource = async (req, res) => {
   try {
     const resource = await Resource.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -60,7 +56,6 @@ exports.updateResource = async (req, res) => {
   }
 };
 
-// DELETE /api/resources/:id
 exports.deleteResource = async (req, res) => {
   try {
     const resource = await Resource.findByIdAndDelete(req.params.id);

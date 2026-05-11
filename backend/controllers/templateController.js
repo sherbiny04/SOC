@@ -9,7 +9,6 @@ const buildPaginationAndSort = (query) => {
   return { page, limit, skip, sort: { [sortBy]: order } };
 };
 
-// POST /api/templates
 exports.createTemplate = async (req, res) => {
   try {
     const template = await Template.create(req.body);
@@ -19,7 +18,6 @@ exports.createTemplate = async (req, res) => {
   }
 };
 
-// GET /api/templates
 exports.getAllTemplates = async (req, res) => {
   try {
     const { page, limit, skip, sort } = buildPaginationAndSort(req.query);
@@ -38,7 +36,6 @@ exports.getAllTemplates = async (req, res) => {
   }
 };
 
-// GET /api/templates/:id
 exports.getTemplateById = async (req, res) => {
   try {
     const template = await Template.findById(req.params.id);
@@ -49,7 +46,6 @@ exports.getTemplateById = async (req, res) => {
   }
 };
 
-// PUT /api/templates/:id
 exports.updateTemplate = async (req, res) => {
   try {
     const template = await Template.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -60,7 +56,6 @@ exports.updateTemplate = async (req, res) => {
   }
 };
 
-// DELETE /api/templates/:id
 exports.deleteTemplate = async (req, res) => {
   try {
     const template = await Template.findByIdAndDelete(req.params.id);

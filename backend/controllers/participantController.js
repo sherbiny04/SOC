@@ -9,7 +9,6 @@ const buildPaginationAndSort = (query) => {
   return { page, limit, skip, sort: { [sortBy]: order } };
 };
 
-// POST /api/participants
 exports.createParticipant = async (req, res) => {
   try {
     const participant = await Participant.create(req.body);
@@ -19,7 +18,6 @@ exports.createParticipant = async (req, res) => {
   }
 };
 
-// GET /api/participants
 exports.getAllParticipants = async (req, res) => {
   try {
     const { page, limit, skip, sort } = buildPaginationAndSort(req.query);
@@ -38,7 +36,6 @@ exports.getAllParticipants = async (req, res) => {
   }
 };
 
-// GET /api/participants/:id
 exports.getParticipantById = async (req, res) => {
   try {
     const participant = await Participant.findById(req.params.id);
@@ -49,7 +46,6 @@ exports.getParticipantById = async (req, res) => {
   }
 };
 
-// PUT /api/participants/:id
 exports.updateParticipant = async (req, res) => {
   try {
     const participant = await Participant.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -60,7 +56,6 @@ exports.updateParticipant = async (req, res) => {
   }
 };
 
-// DELETE /api/participants/:id
 exports.deleteParticipant = async (req, res) => {
   try {
     const participant = await Participant.findByIdAndDelete(req.params.id);
