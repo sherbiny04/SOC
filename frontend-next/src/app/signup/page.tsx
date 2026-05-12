@@ -14,15 +14,15 @@ export default function SignupPage() {
     e.preventDefault();
     setMessage(null);
     try {
-      const response = await fetch("http://localhost:8000/api/auth/register", {
+      const response = await fetch("http://localhost:5001/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstName, lastName, email, password }),
       });
       const data = await response.json();
       if (response.ok) {
-        setMessage({ text: "Account created successfully! Redirecting to login...", type: "success" });
-        setTimeout(() => { window.location.href = "/login"; }, 1500);
+        setMessage({ text: "Account created successfully! Redirecting to dashboard...", type: "success" });
+        setTimeout(() => { window.location.href = "/dashboard"; }, 1500);
       } else {
         setMessage({ text: data.message || "Registration failed.", type: "error" });
       }

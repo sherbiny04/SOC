@@ -1,0 +1,408 @@
+{
+  "info": {
+    "name": "SOC Phase 2 - Participants Microservice",
+    "description": "Postman collection for the Participants Microservice (port 3003) and via API Gateway (port 3000). Covers all CRUD endpoints with test scripts.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "participants-service-collection"
+  },
+  "variable": [
+    {
+      "key": "direct_url",
+      "value": "http://localhost:3003",
+      "type": "string"
+    },
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "participant_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Direct - Participants Service (port 3003)",
+      "item": [
+        {
+          "name": "Create Participant",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ahmed Ali\",\n  \"email\": \"ahmed.ali@example.com\",\n  \"role\": \"student\",\n  \"phone\": \"+201001234567\"\n}"
+            },
+            "url": {
+              "raw": "{{direct_url}}/participants",
+              "host": ["{{direct_url}}"],
+              "path": ["participants"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Response has _id', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json).to.have.property('_id');",
+                  "  pm.collectionVariables.set('participant_id', json._id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get All Participants",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{direct_url}}/participants",
+              "host": ["{{direct_url}}"],
+              "path": ["participants"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response has data array', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json).to.have.property('data');",
+                  "  pm.expect(json.data).to.be.an('array');",
+                  "  pm.expect(json).to.have.property('total');",
+                  "  pm.expect(json).to.have.property('page');",
+                  "  pm.expect(json).to.have.property('totalPages');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get All Participants - Filter by Role",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{direct_url}}/participants?role=instructor",
+              "host": ["{{direct_url}}"],
+              "path": ["participants"],
+              "query": [{ "key": "role", "value": "instructor" }]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('All returned participants are instructors', () => {",
+                  "  const json = pm.response.json();",
+                  "  json.data.forEach(p => pm.expect(p.role).to.equal('instructor'));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get All Participants - Pagination & Sorting",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{direct_url}}/participants?page=1&limit=10&sortBy=name&order=asc",
+              "host": ["{{direct_url}}"],
+              "path": ["participants"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "limit", "value": "10" },
+                { "key": "sortBy", "value": "name" },
+                { "key": "order", "value": "asc" }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Pagination fields present', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.page).to.equal(1);",
+                  "  pm.expect(json.limit).to.equal(10);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Participant by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{direct_url}}/participants/{{participant_id}}",
+              "host": ["{{direct_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Response has _id', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json).to.have.property('_id');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update Participant",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"instructor\",\n  \"phone\": \"+201009876543\"\n}"
+            },
+            "url": {
+              "raw": "{{direct_url}}/participants/{{participant_id}}",
+              "host": ["{{direct_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Role was updated', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json.role).to.equal('instructor');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Delete Participant",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{direct_url}}/participants/{{participant_id}}",
+              "host": ["{{direct_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Via API Gateway (port 3000)",
+      "item": [
+        {
+          "name": "Gateway - Create Participant",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sara Hassan\",\n  \"email\": \"sara.hassan@example.com\",\n  \"role\": \"student\",\n  \"phone\": \"+201112345678\"\n}"
+            },
+            "url": {
+              "raw": "{{gateway_url}}/participants",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 201', () => pm.response.to.have.status(201));",
+                  "pm.test('Response has _id', () => {",
+                  "  const json = pm.response.json();",
+                  "  pm.expect(json).to.have.property('_id');",
+                  "  pm.collectionVariables.set('participant_id', json._id);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gateway - Get All Participants",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "url": {
+              "raw": "{{gateway_url}}/participants",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gateway - Filter by Role",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "url": {
+              "raw": "{{gateway_url}}/participants?role=student",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants"],
+              "query": [{ "key": "role", "value": "student" }]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gateway - Get Participant by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "url": {
+              "raw": "{{gateway_url}}/participants/{{participant_id}}",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gateway - Update Participant",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{gateway_url}}/participants/{{participant_id}}",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gateway - Delete Participant",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{jwt_token}}" }
+            ],
+            "url": {
+              "raw": "{{gateway_url}}/participants/{{participant_id}}",
+              "host": ["{{gateway_url}}"],
+              "path": ["participants", "{{participant_id}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status is 200', () => pm.response.to.have.status(200));"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
