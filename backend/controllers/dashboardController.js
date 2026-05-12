@@ -13,7 +13,7 @@ exports.getDashboardStats = async (req, res) => {
       topTemplateResult,
     ] = await Promise.all([
       Session.countDocuments(),
-      Session.countDocuments({ status: 'upcoming', date: { $gte: now } }),
+      Session.countDocuments({ status: 'scheduled', date: { $gte: now } }),
       Session.countDocuments({ status: 'completed' }),
       Participant.countDocuments(),
       Session.aggregate([
@@ -29,7 +29,7 @@ exports.getDashboardStats = async (req, res) => {
             as: 'templateInfo',
           },
         },
-        { $unwind: { path: '$templateInfo', preserveNullAndEmpty: true } },
+        { $unwind: { path: '$templateInfo', preserveNullAndEmptyArrays: true } },
         { $project: { _id: 0, template: '$templateInfo', usageCount: '$count' } },
       ]),
     ]);
