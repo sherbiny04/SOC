@@ -477,7 +477,7 @@ export default function DashboardPage() {
                     {topTemplate ? String(topTemplate.name) : "N/A"}
                   </p>
                   <span className="text-xs font-bold bg-white inline-block px-3 py-1.5 rounded-full border-2 border-brand-dark relative z-10 shadow-sm">
-                    Used {topTemplate ? topTemplate.usage ?? 0 : 0} times
+                    Used {topTemplate ? Number(topTemplate.usage ?? 0) : 0} times
                   </span>
                 </article>
               </div>
