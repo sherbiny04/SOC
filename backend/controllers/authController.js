@@ -12,7 +12,7 @@ exports.register = async (req, res) => {
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ message: error.message || 'Registration failed' });
     }
 };
 
@@ -28,6 +28,6 @@ exports.login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET || 'secretkey', { expiresIn: '1d' });
         res.status(200).json({ token, user: { id: user._id, firstName: user.firstName, email: user.email } });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ message: error.message || 'Login failed' });
     }
 };
